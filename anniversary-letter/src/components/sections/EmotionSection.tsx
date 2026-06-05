@@ -1,0 +1,68 @@
+import { motion } from 'framer-motion';
+import { emotionFlow } from '../../data/memories';
+import type { EmotionNote } from '../../data/memories';
+import FloralFrame from '../ui/FloralFrame';
+import FloralWreath from '../ui/FloralWreath';
+
+const toneClasses: Record<EmotionNote['tone'], string> = {
+  rose: 'border-rose/25 bg-blush/60 text-rose',
+  sage: 'border-leaf/30 bg-leafsoft/60 text-leaf',
+  sky: 'border-skysoft/40 bg-skysoft/40 text-leaf',
+  honey: 'border-honey/40 bg-honey/20 text-honey',
+};
+
+export default function EmotionSection() {
+  return (
+    <section className="px-5 py-16 font-hand">
+      <div className="mx-auto max-w-[402px]">
+        <motion.div
+          className="mb-10 text-center"
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.4 }}
+          transition={{ duration: 0.65, ease: 'easeOut' }}
+        >
+          <FloralWreath size="sm" className="mb-3" />
+          <p className="mb-3 text-[1.15rem] font-normal text-rose">희 · 노 · 애 · 락</p>
+          <h2 className="text-[2.75rem] font-normal leading-tight text-ink">
+            우리가 지나온 마음들
+          </h2>
+          <p className="mx-auto mt-5 max-w-[340px] text-[1.35rem] leading-9 text-ink/70">
+            좋은 순간만 있던 건 아니지만, 모든 감정이 결국 우리를 조금 더
+            단단하게 만들어 줬어.
+          </p>
+        </motion.div>
+
+        <div className="grid gap-4">
+          {emotionFlow.map((emotion, index) => (
+            <motion.article
+              key={emotion.key}
+              initial={{ opacity: 0, y: 26 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.35 }}
+              transition={{
+                duration: 0.55,
+                delay: index * 0.08,
+                ease: 'easeOut',
+              }}
+            >
+              <FloralFrame className="p-6">
+                <span
+                  className={`mb-5 flex h-14 w-14 items-center justify-center rounded-md border text-3xl font-normal ${toneClasses[emotion.tone]}`}
+                >
+                  {emotion.key}
+                </span>
+                <h3 className="text-[1.55rem] font-normal leading-snug text-ink">
+                  {emotion.title}
+                </h3>
+                <p className="mt-4 text-[1.2rem] leading-8 text-ink/70">
+                  {emotion.message}
+                </p>
+              </FloralFrame>
+            </motion.article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}

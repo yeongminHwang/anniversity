@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1125" role="img" aria-labelledby="title desc">
+  <title id="title">함께 떠난 날 placeholder</title>
+  <desc id="desc">바다와 산책길, 작은 여행 가방이 있는 placeholder 이미지</desc>
+  <rect width="900" height="1125" fill="#f3f8fa"/>
+  <rect x="76" y="78" width="752" height="969" rx="60" fill="#fffdf8"/>
+  <path d="M126 648c130-78 260-78 390 0s260 78 390 0v397H126Z" fill="#adc8d3"/>
+  <path d="M126 722c126-58 247-58 363 0 116 56 239 56 367 0" fill="none" stroke="#fffaf1" stroke-width="24" stroke-linecap="round"/>
+  <circle cx="650" cy="285" r="92" fill="#d7a94d"/>
+  <path d="M250 575c60-96 150-144 270-144s214 48 282 144" fill="#93a889"/>
+  <rect x="328" y="690" width="180" height="122" rx="28" fill="#d96f85"/>
+  <path d="M374 690v-34c0-34 30-58 67-58s67 24 67 58v34" fill="none" stroke="#3a2b2b" stroke-width="14" stroke-linecap="round"/>
+  <text x="450" y="930" text-anchor="middle" fill="#3a2b2b" font-family="Georgia, serif" font-size="48">trip day</text>
+</svg>
+

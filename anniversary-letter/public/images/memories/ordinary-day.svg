@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1125" role="img" aria-labelledby="title desc">
+  <title id="title">평범해서 더 좋았던 날 placeholder</title>
+  <desc id="desc">창가와 담요, 따뜻한 머그잔이 있는 평범한 하루 placeholder 이미지</desc>
+  <rect width="900" height="1125" fill="#fff7ed"/>
+  <rect x="74" y="78" width="756" height="969" rx="58" fill="#fffdf8"/>
+  <rect x="190" y="235" width="520" height="360" rx="32" fill="#f8dce3"/>
+  <path d="M450 235v360" stroke="#fffdf8" stroke-width="18"/>
+  <path d="M190 415h520" stroke="#fffdf8" stroke-width="18"/>
+  <path d="M220 760c96-80 194-80 294 0s195 80 294 0v210H220Z" fill="#93a889"/>
+  <rect x="330" y="640" width="170" height="130" rx="36" fill="#d7a94d"/>
+  <path d="M500 675h48c38 0 38 68 0 68h-48" fill="none" stroke="#d7a94d" stroke-width="28" stroke-linecap="round"/>
+  <path d="M338 825h250" stroke="#d96f85" stroke-width="20" stroke-linecap="round"/>
+  <text x="450" y="930" text-anchor="middle" fill="#3a2b2b" font-family="Georgia, serif" font-size="45">ordinary day</text>
+</svg>
+
