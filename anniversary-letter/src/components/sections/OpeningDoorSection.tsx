@@ -76,7 +76,7 @@ export default function OpeningDoorSection({
       />
 
       <motion.div
-        className="relative z-30 mx-auto w-full max-w-[402px] text-center"
+        className="relative z-30 mx-auto flex w-full max-w-[402px] flex-col items-center text-center"
         initial={{ opacity: 0, y: 18 }}
         animate={{
           opacity: isOpening ? 0 : 1,
@@ -85,28 +85,40 @@ export default function OpeningDoorSection({
         }}
         transition={{ duration: 0.65, ease: 'easeOut' }}
       >
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute left-1/2 top-[45%] z-0 h-[310px] w-[310px] -translate-x-1/2 -translate-y-1/2"
+        >
+          <div className="absolute inset-7 rounded-[44%] bg-ivory/70 blur-[1px]" />
+          <img
+            src="/images/decorations/openingDoor.svg"
+            alt=""
+            className="relative h-full w-full object-contain opacity-[0.58] drop-shadow-[0_18px_32px_rgba(201,79,114,0.12)]"
+          />
+        </div>
+
         <img
           src="/images/decorations/floweralUp.svg"
           alt=""
           aria-hidden="true"
-          className="mx-auto mb-7 h-auto w-[210px] max-w-[64vw] object-contain opacity-90"
+          className="relative z-10 mx-auto mb-4 h-auto w-[178px] max-w-[54vw] object-contain opacity-90"
         />
 
-        <div className="mx-auto max-w-[340px]">
-          <p className="mb-4 text-base font-normal tracking-wide text-rose">
-            2025.06.05 - 2026.06.05
+        <div className="relative z-10 mx-auto max-w-[340px]">
+          <p className="mb-3 text-base font-normal tracking-wide text-rose">
+            2025.07.01 - 2026.07.01
           </p>
-          <h1 className="text-[3rem] font-normal leading-[1.08] text-ink">
-            우리의 첫 번째 1년에 초대해
+          <h1 className="text-[2.75rem] font-normal leading-[1.08] text-ink">
+            우리의 첫 번째 1년
           </h1>
-          <p className="mx-auto mt-5 max-w-[320px] text-[1.45rem] leading-9 text-ink/70">
+          <p className="mx-auto mt-4 max-w-[320px] text-[1.35rem] leading-8 text-ink/70">
             하얀 종이 위에 너와 내가 지나온 계절을 조용히 담아봤어.
           </p>
           <button
             type="button"
             onClick={handleOpen}
             disabled={isOpening}
-            className="mt-10 min-h-14 w-full rounded-full bg-rose px-6 py-4 text-[1.25rem] font-normal text-white shadow-photo transition active:scale-[0.98] disabled:opacity-75"
+            className="mt-7 min-h-14 w-full rounded-full bg-rose px-6 py-4 text-[1.25rem] font-normal text-white shadow-photo transition active:scale-[0.98] disabled:opacity-75"
           >
             우리의 1년 열어보기
           </button>
@@ -116,7 +128,7 @@ export default function OpeningDoorSection({
           src="/images/decorations/floweralDown.svg"
           alt=""
           aria-hidden="true"
-          className="mx-auto mt-7 h-auto w-[210px] max-w-[64vw] object-contain opacity-90"
+          className="relative z-10 mx-auto mt-5 h-auto w-[178px] max-w-[54vw] object-contain opacity-90"
         />
       </motion.div>
     </section>

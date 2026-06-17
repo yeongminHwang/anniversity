@@ -44,8 +44,12 @@ export default function PhotoGallerySection({
               }}
             >
               <PhotoCard
-                image={memory.image}
-                alt={`${memory.title} 앨범 사진`}
+                image={memory.media.src}
+                mediaType={memory.media.type}
+                poster={memory.media.poster}
+                alt={`${memory.title} 앨범 ${
+                  memory.media.type === 'video' ? '영상' : '사진'
+                }`}
                 title={memory.title}
                 date={memory.date}
                 caption={memory.emotion}

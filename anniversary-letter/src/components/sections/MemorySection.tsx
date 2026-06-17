@@ -24,8 +24,10 @@ export default function MemorySection({ memory, index }: MemorySectionProps) {
         }`}
       >
         <PhotoCard
-          image={memory.image}
-          alt={`${memory.title} 사진`}
+          image={memory.media.src}
+          mediaType={memory.media.type}
+          poster={memory.media.poster}
+          alt={`${memory.title} ${memory.media.type === 'video' ? '영상' : '사진'}`}
           title={memory.title}
           date={memory.date}
           caption={memory.emotion}

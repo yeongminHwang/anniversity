@@ -3,6 +3,8 @@ import { motion } from 'framer-motion';
 
 type PolaroidFlipCardProps = {
   image: string;
+  mediaType?: 'image' | 'video';
+  poster?: string;
   title: string;
   date: string;
   frontMessage: string;
@@ -11,6 +13,8 @@ type PolaroidFlipCardProps = {
 
 export default function PolaroidFlipCard({
   image,
+  mediaType = 'image',
+  poster,
   title,
   date,
   frontMessage,
@@ -48,12 +52,26 @@ export default function PolaroidFlipCard({
             className="absolute right-2 top-2 z-10 h-auto w-24 rotate-[16deg] opacity-35"
           />
           <div className="aspect-[4/5] overflow-hidden rounded-md bg-blush/50">
-            <img
-              src={image}
-              alt={`${title} 사진`}
-              loading="lazy"
-              className="h-full w-full object-cover"
-            />
+            {mediaType === 'video' ? (
+              <video
+                src={image}
+                poster={poster}
+                aria-label={`${title} 영상`}
+                className="h-full w-full object-cover"
+                autoPlay
+                loop
+                muted
+                playsInline
+                preload="metadata"
+              />
+            ) : (
+              <img
+                src={image}
+                alt={`${title} 사진`}
+                loading="lazy"
+                className="h-full w-full object-cover"
+              />
+            )}
           </div>
           <div className="px-2 pb-2 pt-5">
             <div className="flex items-baseline justify-between gap-3">
@@ -68,7 +86,9 @@ export default function PolaroidFlipCard({
               {frontMessage}
             </p>
             <p className="mt-4 text-[1.05rem] font-normal text-rose">
-              사진을 탭하면 뒷면의 마음이 보여
+              {mediaType === 'video'
+                ? '영상을 탭하면 뒷면의 마음이 보여'
+                : '사진을 탭하면 뒷면의 마음이 보여'}
             </p>
           </div>
         </article>

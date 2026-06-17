@@ -1,11 +1,12 @@
 import { motion } from 'framer-motion';
+import { memoryAsset } from '../../data/assets';
 import FloralWreath from '../ui/FloralWreath';
 import ScrollHint from '../ui/ScrollHint';
 
 const photoPreview = [
-  '/images/memories/first-meeting.svg',
-  '/images/memories/trip-day.svg',
-  '/images/memories/ordinary-day.svg',
+  memoryAsset('6-행궁동 데이트/6-행궁동 데이트-01.jpg'),
+  memoryAsset('8-안동 데이트/8-안동 데이트-05.jpg'),
+  memoryAsset('9-부산 데이트/9-부산 데이트-05.jpg'),
 ];
 
 export default function HeroSection() {

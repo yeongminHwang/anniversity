@@ -3,6 +3,8 @@ import { motion } from 'framer-motion';
 type PhotoCardProps = {
   image: string;
   alt: string;
+  mediaType?: 'image' | 'video';
+  poster?: string;
   title?: string;
   date?: string;
   caption?: string;
@@ -13,6 +15,8 @@ type PhotoCardProps = {
 export default function PhotoCard({
   image,
   alt,
+  mediaType = 'image',
+  poster,
   title,
   date,
   caption,
@@ -26,12 +30,25 @@ export default function PhotoCard({
       transition={{ duration: 0.25, ease: 'easeOut' }}
     >
       <div className="aspect-[4/5] overflow-hidden rounded-md bg-blush/40">
-        <img
-          src={image}
-          alt={alt}
-          loading={loading}
-          className="h-full w-full object-cover"
-        />
+        {mediaType === 'video' ? (
+          <video
+            src={image}
+            poster={poster}
+            aria-label={alt}
+            className="h-full w-full object-cover"
+            controls
+            muted
+            playsInline
+            preload="metadata"
+          />
+        ) : (
+          <img
+            src={image}
+            alt={alt}
+            loading={loading}
+            className="h-full w-full object-cover"
+          />
+        )}
       </div>
       {(title || date || caption) && (
         <figcaption className="space-y-2 px-1 pb-1 pt-4 font-hand">
