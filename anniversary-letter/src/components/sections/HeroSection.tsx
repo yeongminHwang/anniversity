@@ -4,9 +4,9 @@ import FloralWreath from '../ui/FloralWreath';
 import ScrollHint from '../ui/ScrollHint';
 
 const photoPreview = [
-  memoryAsset('6-행궁동 데이트/6-행궁동 데이트-01-1600.webp'),
-  memoryAsset('8-안동 데이트/8-안동 데이트-05-1600.webp'),
-  memoryAsset('9-부산 데이트/9-부산 데이트-05-1600.webp'),
+  memoryAsset('4-창원 데이트/4-창원 데이트-09.jpg'),
+  memoryAsset('4-창원 데이트/4-창원 데이트-08-1600.webp'),
+  memoryAsset('3-전역/3-전역-01-1600.webp'),
 ];
 
 export default function HeroSection() {
@@ -21,16 +21,16 @@ export default function HeroSection() {
         >
           <FloralWreath size="sm" className="mb-3" />
           <p className="mb-5 text-base font-normal tracking-wide text-rose">
-            2025.06.05 - 2026.06.05
+            2025.07.01 - 2026.07.01
           </p>
           <h1 className="text-[3.25rem] font-normal leading-[1.04] text-ink">
             Our First Year
           </h1>
           <p className="mx-auto mt-3 text-[1.7rem] leading-8 text-rose">
-            우리의 첫 번째 1년
+            영민 ❤️ 선미
           </p>
           <p className="mx-auto mt-5 max-w-[330px] text-[1.38rem] leading-9 text-ink/70">
-            벚꽃처럼 조용히 피어난 기억들을 한 장씩 초대장처럼 펼쳐볼게.
+            지난 1년동안의 행복한 추억 살펴보기
           </p>
           <div className="mt-9">
             <ScrollHint />
