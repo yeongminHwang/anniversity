@@ -106,7 +106,7 @@ export const memories: Memory[] = [
         },
         message: 'with 어린이집 선생님',
         flipMessage:
-          '이 사진 너무 귀여워. 완죤 귀여운 선생님이야. 😍😍',
+          '이 영상 너무 귀여워. 완죤 귀여운 선생님이야. 😍😍',
       },
       {
         id: 'sseom-extra-02',
@@ -200,16 +200,67 @@ export const memories: Memory[] = [
       src: memoryAsset('04-changwon-date/04-changwon-date-08-1600.webp'),
     },
     message:
-      '창원에서 보낸 하루는 특별한 말보다 같이 걷던 분위기로 더 선명하게 남아 있어.',
+      '멀리서 와준 선미 고마워',
     hiddenMessage:
       '그날의 사진을 보면, 우리가 조금씩 서로에게 편해지고 있었다는 게 보여.',
     flipMessage:
-      '낯설었던 곳도 너와 같이 있으면 금방 우리 기억이 되는 게 신기했어.',
+      '익숙했던 공간도 자기랑 같이 있으니까 \n 다르게 느껴지는게 신기했어.',
+    extraPolaroids: [
+      {
+        id: 'changwon-extra-01',
+        date: 'EP.04-2',
+        title: '커플 지갑',
+        media: {
+          type: 'image',
+          src: memoryAsset('04-changwon-date/04-changwon-date-01.jpg'),
+        },
+        message: '자기와 첫 커플 아이템??',
+        flipMessage:
+          '안 잃어버리고 잘 간직하기',
+      },
+      {
+        id: 'changwon-extra-04',
+        date: 'EP.04-5',
+        title: '깻잎막회',
+        media: {
+          type: 'image',
+          src: memoryAsset('04-changwon-date/04-changwon-date-12.jpg'),
+        },
+        message: '우리 원픽 깻잎막회',
+        flipMessage:
+          '근질근질한데요..??',
+      },
+      {
+        id: 'changwon-extra-02',
+        date: 'EP.04-3',
+        title: '넘어질라...',
+        media: {
+          type: 'image',
+          src: memoryAsset('04-changwon-date/04-changwon-date-02.jpg'),
+        },
+        message: '선미. 벤츠 뽑으시다.',
+        flipMessage:
+          '이 때 귀여워서 얼마나 웃었는지 몰라ㅋㅋㅋ',
+      },
+      {
+        id: 'changwon-extra-03',
+        date: 'EP.04-4',
+        title: '인생네컷',
+        media: {
+          type: 'image',
+          src: memoryAsset('04-changwon-date/04-changwon-date-06.jpg'),
+        },
+        message: '귀엽다.',
+        flipMessage:
+          '우리 인생네컷 많이 찍으러 다니자아~~',
+      },
+
+    ],
     quiz: {
-      question: '창원 데이트가 남긴 느낌은?',
-      options: ['편안한 다정함', '급한 하루', '어색한 침묵'],
-      answer: '편안한 다정함',
-      successMessage: '맞아. 편해지는 마음이 참 좋았어.',
+      question: '창원 데이트하다가 멍든 이유는?',
+      options: ['길 가다 넘어져서', '선미랑 영민이의 상호 어깨빵', '클레이 사격'],
+      answer: '클레이 사격',
+      successMessage: '담에 한 번 더 Go??',
     },
   },
   {
@@ -217,22 +268,48 @@ export const memories: Memory[] = [
     date: 'EP.05',
     title: '마산 데이트',
     emotion: '웃음',
-    image: memoryAsset('05-masan-date/05-masan-date-03-1600.webp'),
+    image: memoryAsset('05-masan-date/05-masan-date-01.mp4'),
     media: {
-      type: 'image',
-      src: memoryAsset('05-masan-date/05-masan-date-03-1600.webp'),
+      type: 'video',
+      src: memoryAsset('05-masan-date/05-masan-date-01.mp4'),
     },
     message:
-      '마산에서의 우리는 조금 더 자연스러웠고, 그래서 사진 속 표정도 더 따뜻해 보여.',
+      '선미는 비눗방울이 좋아',
     hiddenMessage:
       '함께 웃는 일이 점점 익숙해질수록, 너와 보내는 하루가 내 일상에 가까워졌어.',
     flipMessage:
-      '어디를 갔는지보다 네 옆에서 어떤 마음이었는지가 더 오래 남았어.',
+      '돝섬 갔을 때 자기 정말 이뻐서 사진 많이 찍어주고 싶더라니깐요?🤣🤣',
+    extraPolaroids: [
+      {
+        id: 'masan-date-extra-01',
+        date: 'EP.05-2',
+        title: '잼민이와 언니',
+        media: {
+          type: 'image',
+          src: memoryAsset('05-masan-date/05-masan-date-03-1600.webp'),
+        },
+        message: '그만 까불기',
+        flipMessage:
+          '자기랑 비눗방울 놀이해서 재밌었어. \n 다음에 또 돝섬 가자아',
+      },
+      {
+        id: 'masan-date-extra-02',
+        date: 'EP.05-3',
+        title: '.',
+        media: {
+          type: 'image',
+          src: memoryAsset('05-masan-date/05-masan-date-04.jpg'),
+        },
+        message: '그냥 이뻐서.',
+        flipMessage:
+          '자기는 자기 이쁜 줄 알아야 해. 🥰',
+      },
+    ],
     quiz: {
-      question: '마산 데이트에서 제일 크게 남은 건?',
-      options: ['함께 웃던 표정', '길 찾기 실력', '날씨 걱정'],
-      answer: '함께 웃던 표정',
-      successMessage: '맞아. 결국 가장 오래 남는 건 네 표정이더라.',
+      question: '돝섬 데이트에서 열심히 주운 것은?',
+      options: ['돌멩이', '솔방울', '쓰레기'],
+      answer: '솔방울',
+      successMessage: '말려서 어린이집에서 잘 썼니..?',
     },
   },
   {
@@ -246,16 +323,16 @@ export const memories: Memory[] = [
       src: memoryAsset('06-haenggung-date/06-haenggung-date-03-1600.webp'),
     },
     message:
-      '행궁동을 걸으며 나눈 작은 말들이 생각보다 오래 마음에 남았어.',
+      '이제 행궁동만 걸으면 자기 생각이 나.',
     hiddenMessage:
       '나란히 걷는 속도가 맞아간다는 건, 마음도 조금씩 같은 쪽을 본다는 뜻 같아.',
     flipMessage:
-      '많은 걸 하지 않아도 충분했던 하루. 네가 있어서 그랬어.',
+      '커피-밥-술만 먹어도 자기랑 하면 왜 다 재밌을까?',
     quiz: {
-      question: '행궁동에서 우리에게 제일 잘 어울린 건?',
-      options: ['천천히 걷기', '빨리 지나가기', '말 아끼기'],
-      answer: '천천히 걷기',
-      successMessage: '맞아. 천천히 걷는 시간이 우리답게 좋았어.',
+      question: '행궁동에서 안 먹어본 것은?',
+      options: ['대방어회', '떡볶이', '골뱅이'],
+      answer: '떡볶이',
+      successMessage: '정답이야',
     },
   },
   {
@@ -263,22 +340,36 @@ export const memories: Memory[] = [
     date: 'EP.07',
     title: '보정동 데이트',
     emotion: '포근함',
-    image: memoryAsset('07-bojeong-date/07-bojeong-date-03-1600.webp'),
+    image: memoryAsset('07-bojeong-date/07-bojeong-date-03.jpg'),
     media: {
       type: 'image',
-      src: memoryAsset('07-bojeong-date/07-bojeong-date-03-1600.webp'),
+      src: memoryAsset('07-bojeong-date/07-bojeong-date-03.jpg'),
     },
     message:
-      '보정동의 거리처럼 조용하고 예쁜 순간들이 우리 사이에도 차곡차곡 쌓였어.',
+      '누가 꽃일까요?',
     hiddenMessage:
       '같이 있는 시간이 편해질수록, 나는 너에게 더 좋은 사람이 되고 싶어졌어.',
     flipMessage:
-      '예쁜 곳이라 좋았던 게 아니라, 너와 함께라서 그곳이 예뻐졌어.',
+      `예쁜 곳이라 좋았던 게 아니라, \n 자기랑 함께라서 그곳이 예뻐졌어.`,
+    extraPolaroids: [
+      {
+        id: 'bojeong-date-extra-01',
+        date: 'EP.06-2',
+        title: '벚꽃길',
+        media: {
+          type: 'image',
+          src: memoryAsset('07-bojeong-date/07-bojeong-date-04.jpg'),
+        },
+        message: '같이 걷기',
+        flipMessage:
+          '내년 벚꽃도 자기랑 함께. 🌸',
+      },
+    ],
     quiz: {
-      question: '보정동 데이트의 분위기에 가까운 말은?',
-      options: ['포근한 하루', '시끄러운 계획', '급한 약속'],
-      answer: '포근한 하루',
-      successMessage: '맞아. 그날은 포근하다는 말이 잘 어울렸어.',
+      question: '2027년 벚꽃 보러가고 싶은 사람은?',
+      options: ['차은우', '황영민', '조인성'],
+      answer: '황영민',
+      successMessage: '그럼그럼. 벚꽃 보기로 약속한거다! 🤣',
     },
   },
   {
@@ -292,16 +383,66 @@ export const memories: Memory[] = [
       src: memoryAsset('08-andong-date/08-andong-date-05-1600.webp'),
     },
     message:
-      '안동에서 본 풍경보다 더 오래 남은 건, 그 안에서 같은 방향을 보던 우리였어.',
+      '자기랑 함께해서 행복했던 안동 여행',
     hiddenMessage:
       '여행은 장소를 남기는 줄 알았는데, 너와 다녀온 곳은 마음의 온도를 남기더라.',
     flipMessage:
-      '낯선 풍경이 우리 추억이 되는 순간마다, 너와 더 멀리 가보고 싶어졌어.',
+      '자기가 안동 같이 안 와줬으면, \n 지나가는 안동 "방문"이었을거야. 덕분에 행복한 추억이 됐어.',
+    extraPolaroids: [
+      {
+        id: 'andong-date-extra-01',
+        date: 'EP.08-2',
+        title: '같이 가',
+        media: {
+          type: 'video',
+          src: memoryAsset('08-andong-date/08-andong-date-01.mp4'),
+        },
+        message: '???: 나 다이어트 해야해',
+        flipMessage:
+          '다이어트는 나랑 같이 합시다. \n 나도 살 빼야해ㅠㅠㅠ',
+      },
+      {
+        id: 'andong-date-extra-02',
+        date: 'EP.08-3',
+        title: '외모 공격',
+        media: {
+          type: 'image',
+          src: memoryAsset('08-andong-date/08-andong-date-06.jpg'),
+        },
+        message: '합성 아님',
+        flipMessage:
+          '아무튼 합성 아님...',
+      },
+      {
+        id: 'andong-date-extra-03',
+        date: 'EP.08-4',
+        title: '안동 맥주',
+        media: {
+          type: 'image',
+          src: memoryAsset('08-andong-date/08-andong-date-07.jpg'),
+        },
+        message: '맥주 공부 열심히 한 날',
+        flipMessage:
+          '기억나는 맥주가 없네. \n 자기랑 또 가야겠다~ 😂',
+      },
+      {
+        id: 'andong-date-extra-04',
+        date: 'EP.08-5',
+        title: '왕과 사는 남자',
+        media: {
+          type: 'image',
+          src: memoryAsset('08-andong-date/08-andong-date-08.jpg'),
+        },
+        message: '물론 선미가 왕',
+        flipMessage:
+          '뫼시고 살겠습니다. \n 사랑해 🥰',
+      },
+    ],
     quiz: {
-      question: '안동 여행에서 제일 오래 남은 건?',
-      options: ['같이 본 풍경', '짐 무게', '알람 소리'],
-      answer: '같이 본 풍경',
-      successMessage: '맞아. 같이 봐서 더 예쁜 풍경이었어.',
+      question: '월영교 보러가는 길. 마주치고 깜짝 놀랐던 것은?',
+      options: ['멧돼지', '호랑이', '지네'],
+      answer: '지네',
+      successMessage: '정답! 아직 그 지네 살아있을까?',
     },
   },
   {
@@ -315,16 +456,66 @@ export const memories: Memory[] = [
       src: memoryAsset('09-busan-date/09-busan-date-05-1600.webp'),
     },
     message:
-      '부산에서의 우리는 첫 번째 1년을 지나, 다음 계절을 같이 바라보는 사람들 같았어.',
+      'MZ샷 실패...?',
     hiddenMessage:
       '많은 장면이 있었지만 결국 제일 좋은 건, 그 모든 장면 옆에 네가 있었다는 거야.',
     flipMessage:
-      '우리의 1년은 끝이 아니라 다음 이야기를 여는 가장 다정한 시작이야.',
+      '가장 남쪽으로 떠나봤던 여행. \n 자기랑 함께해서 좋았어.',
+    extraPolaroids: [
+      {
+        id: 'busan-date-extra-01',
+        date: 'EP.09-2',
+        title: '똑땅해',
+        media: {
+          type: 'image',
+          src: memoryAsset('09-busan-date/09-busan-date-01.jpg'),
+        },
+        message: '???: 흰여율해안터널 오늘 못 들어갑니데이',
+        flipMessage:
+          '우리 다음에 또 와서 이쁜 사진 찍자 🥰 \n 사진 많이 찍어줄게.',
+      },
+      {
+        id: 'busan-date-extra-02',
+        date: 'EP.09-3',
+        title: '여친짤',
+        media: {
+          type: 'image',
+          src: memoryAsset('09-busan-date/09-busan-date-02.jpg'),
+        },
+        message: '???: 커피가 되고 싶어요',
+        flipMessage:
+          '내가 좋아하는 자기 사진이야.',
+      },
+      {
+        id: 'busan-date-extra-03',
+        date: 'EP.09-4',
+        title: '택슐랭',
+        media: {
+          type: 'image',
+          src: memoryAsset('09-busan-date/09-busan-date-04.jpg'),
+        },
+        message: '같이 해줘서 고마워',
+        flipMessage:
+          `뛰고, 땀나고 힘들텐데, \n 내가 좋아한다는 이유 하나로 같이 해줘서 \n 너무 고마워 ❤️`,
+      },
+      {
+        id: 'busan-date-extra-04',
+        date: 'EP.09-5',
+        title: '영차영차',
+        media: {
+          type: 'video',
+          src: memoryAsset('09-busan-date/09-busan-date-06.mp4'),
+        },
+        message: '우린 발도 잘 맞는 커플 🏃',
+        flipMessage:
+          `같이 발 맞춰서 뛰는 것처럼, \n 환상의 콤비가 되어보자.`,
+      },
+    ],
     quiz: {
-      question: '부산 데이트가 우리에게 남긴 건?',
-      options: ['다음 계절의 기대', '완벽한 일정표', '길 잃은 기억'],
-      answer: '다음 계절의 기대',
-      successMessage: '맞아. 앞으로도 같이 가고 싶은 곳이 많아졌어.',
+      question: '부산에서 창원으로 넘어갈 때, 영민이가 두고 온 것은?',
+      options: ['개념', '도라지 정과', '핸드폰'],
+      answer: '도라지 정과',
+      successMessage: '다음부터 정신 똑바로 차릴게ㅠㅠㅠ',
     },
   },
 ];

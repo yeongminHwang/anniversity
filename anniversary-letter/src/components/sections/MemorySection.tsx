@@ -12,7 +12,7 @@ export default function MemorySection({ memory, index }: MemorySectionProps) {
 
   return (
     <motion.section
-      className="min-h-[100svh] px-5 py-14 font-hand"
+      className="min-h-[100svh] px-5 py-14 font-hand [touch-action:pan-y]"
       initial={{ opacity: 0, y: 36 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.28 }}

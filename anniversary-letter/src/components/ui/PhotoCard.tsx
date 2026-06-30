@@ -27,7 +27,7 @@ export default function PhotoCard({
 }: PhotoCardProps) {
   return (
     <motion.figure
-      className={`overflow-hidden rounded-lg border border-borderSoft bg-paper p-3 shadow-photo ${className}`}
+      className={`overflow-hidden rounded-lg border border-borderSoft bg-paper p-3 shadow-photo [touch-action:pan-y] ${className}`}
       whileTap={{ scale: 0.99 }}
       transition={{ duration: 0.25, ease: 'easeOut' }}
     >
@@ -42,6 +42,7 @@ export default function PhotoCard({
             muted
             playsInline
             preload="metadata"
+            draggable={false}
           />
         ) : (
           <img
@@ -49,9 +50,10 @@ export default function PhotoCard({
             srcSet={responsiveWebpSrcSet(image)}
             sizes="(max-width: 640px) calc(100vw - 2.5rem), 402px"
             alt={alt}
+            draggable={false}
             loading={loading}
             decoding="async"
-            className="h-full w-full object-cover"
+            className="h-full w-full select-none object-cover [-webkit-user-drag:none]"
           />
         )}
       </div>

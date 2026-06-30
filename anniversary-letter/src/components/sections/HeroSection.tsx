@@ -4,7 +4,7 @@ import FloralWreath from '../ui/FloralWreath';
 import ScrollHint from '../ui/ScrollHint';
 
 const photoPreview = [
-  memoryAsset('04-changwon-date/04-changwon-date-09.jpg'),
+  memoryAsset('04-changwon-date/04-changwon-date-11.jpg'),
   memoryAsset('04-changwon-date/04-changwon-date-08-1600.webp'),
   memoryAsset('03-discharge/03-discharge-01-1600.webp'),
 ];

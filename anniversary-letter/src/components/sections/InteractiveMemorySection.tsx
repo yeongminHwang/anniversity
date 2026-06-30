@@ -147,7 +147,7 @@ export default function InteractiveMemorySection({
               {activeCardIndex + 1}번째 카드
             </div>
 
-            <div className="overflow-hidden pb-2 select-none [overscroll-behavior:contain] [touch-action:pan-y] [-webkit-touch-callout:none] [-webkit-user-select:none]">
+            <div className="overflow-hidden pb-2 select-none [touch-action:pan-y] [-webkit-touch-callout:none] [-webkit-user-select:none]">
               <motion.div
                 className="flex"
                 animate={{ x: `-${activeCardIndex * 100}%` }}

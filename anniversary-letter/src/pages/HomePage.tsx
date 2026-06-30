@@ -1,13 +1,12 @@
 import { useRef, useState } from 'react';
 import PageLayout from '../components/layout/PageLayout';
-import EmotionSection from '../components/sections/EmotionSection';
 import FinalLetterSection from '../components/sections/FinalLetterSection';
 import HeroSection from '../components/sections/HeroSection';
 import InteractiveMemorySection from '../components/sections/InteractiveMemorySection';
 import OpeningLetterSection from '../components/sections/OpeningLetterSection';
 import OpeningDoorSection from '../components/sections/OpeningDoorSection';
 import PhotoGallerySection from '../components/sections/PhotoGallerySection';
-import HeartCollectMiniGame from '../components/ui/HeartCollectMiniGame';
+import SeonmiEncyclopediaSection from '../components/sections/SeonmiEncyclopediaSection';
 import MusicToggleButton from '../components/ui/MusicToggleButton';
 import { audioAsset } from '../data/assets';
 import { memories } from '../data/memories';
@@ -88,8 +87,7 @@ export default function HomePage() {
               index={index}
             />
           ))}
-          <EmotionSection />
-          <HeartCollectMiniGame />
+          <SeonmiEncyclopediaSection />
           <PhotoGallerySection memories={memories} />
           <FinalLetterSection />
         </>

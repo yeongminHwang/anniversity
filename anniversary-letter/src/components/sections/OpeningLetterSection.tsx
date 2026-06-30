@@ -13,20 +13,18 @@ export default function OpeningLetterSection() {
     >
       <FloralFrame className="mx-auto max-w-[402px] px-5 py-9">
         <FloralWreath size="sm" className="mb-2" />
-        <p className="mb-6 text-[1.25rem] font-normal text-rose">Dear. 너에게</p>
+        <p className="mb-6 text-[1.25rem] font-normal text-rose">Dear. 선미</p>
         <div className="space-y-6 text-[1.45rem] leading-10 text-ink">
           <p>
-            안녕, 내 사람. 우리의 첫 번째 기념일을 그냥 지나치고 싶지
-            않아서, 너와 함께한 시간들을 천천히 꺼내 볼 수 있는 작은 편지를
-            만들었어.
+            안녕, 자기<br></br> 우리의 첫 번째 기념일을 그냥 지나치고 싶지
+            않아서, <br></br>내가 좋아하는 걸로 자기를 웃게 만들어보고 싶어서 만들어봤어.
           </p>
           <p>
-            화려한 말보다 우리가 함께 보낸 하루하루가 더 정확한 마음이라고
-            생각해. 그래서 이 페이지에는 그 마음을 조용히 담아봤어.
+            내가 말도 화려하게 잘 하지 못하고, 항상 잼민이처럼 장난치고 그러지만, 자기를 엄청 좋아한단다?
           </p>
           <p>
-            스크롤을 내릴 때마다 우리가 지나온 계절과 표정들이 너에게 다정하게
-            닿았으면 좋겠어.
+            이거 만든다고 자기랑 통화하면서 계속 작업했는데, <br></br> 지금 이 자리를 빌어서 신경 못 써줘서 미안해.
+            <br></br>그래도 이런 건 비밀로 만들어야하지 않겠어?ㅋㅋㅋ
           </p>
         </div>
       </FloralFrame>
