@@ -1,4 +1,9 @@
-import { useState } from 'react';
+import {
+  useRef,
+  useState,
+  type MouseEvent,
+  type PointerEvent,
+} from 'react';
 import { motion } from 'framer-motion';
 import { decorationAsset, responsiveWebpSrcSet } from '../../data/assets';
 import LazyVideo from './LazyVideo';
@@ -23,25 +28,56 @@ export default function PolaroidFlipCard({
   backMessage,
 }: PolaroidFlipCardProps) {
   const [isFlipped, setIsFlipped] = useState(false);
+  const touchStateRef = useRef({
+    didMove: false,
+    startX: 0,
+    startY: 0,
+  });
 
   const toggle = () => setIsFlipped((current) => !current);
+  const handlePointerDown = (event: PointerEvent<HTMLDivElement>) => {
+    touchStateRef.current = {
+      didMove: false,
+      startX: event.clientX,
+      startY: event.clientY,
+    };
+  };
+  const handlePointerMove = (event: PointerEvent<HTMLDivElement>) => {
+    const deltaX = Math.abs(event.clientX - touchStateRef.current.startX);
+    const deltaY = Math.abs(event.clientY - touchStateRef.current.startY);
+
+    if (deltaX > 8 || deltaY > 8) {
+      touchStateRef.current.didMove = true;
+    }
+  };
+  const handleClick = (event: MouseEvent<HTMLDivElement>) => {
+    if (touchStateRef.current.didMove) {
+      event.preventDefault();
+      touchStateRef.current.didMove = false;
+      return;
+    }
+
+    toggle();
+  };
 
   return (
     <div
       role="button"
       tabIndex={0}
       aria-pressed={isFlipped}
-      onClick={toggle}
+      onClick={handleClick}
+      onPointerDown={handlePointerDown}
+      onPointerMove={handlePointerMove}
       onKeyDown={(event) => {
         if (event.key === 'Enter' || event.key === ' ') {
           event.preventDefault();
           toggle();
         }
       }}
-      className="font-hand [perspective:1200px]"
+      className="select-none font-hand [perspective:1200px] [-webkit-user-select:none]"
     >
       <motion.div
-        className="relative min-h-[620px] w-full rounded-lg outline-none [transform-style:preserve-3d]"
+        className="relative min-h-[620px] w-full rounded-lg outline-none [touch-action:pan-y] [transform-style:preserve-3d]"
         animate={{ rotateY: isFlipped ? 180 : 0 }}
         transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
       >
@@ -90,12 +126,42 @@ export default function PolaroidFlipCard({
             <p className="mt-4 text-[1.3rem] leading-9 text-ink/70">
               {frontMessage}
             </p>
-            <p className="mt-4 text-[1.05rem] font-normal text-rose">
-              {mediaType === 'video'
-                ? '영상을 탭하면 뒷면의 마음이 보여'
-                : '사진을 탭하면 뒷면의 마음이 보여'}
-            </p>
           </div>
+          <motion.div
+            aria-hidden="true"
+            className="pointer-events-none absolute -bottom-3 -right-3 z-20 w-12"
+            initial={{ opacity: 0, x: 14, y: 14, scale: 0.82 }}
+            animate={{
+              opacity: isFlipped ? 0 : 1,
+              x: isFlipped ? 14 : 0,
+              y: isFlipped ? 14 : 0,
+              scale: isFlipped ? 0.82 : 1,
+            }}
+            transition={{ delay: 0.4, duration: 0.72, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <motion.img
+              src={decorationAsset('touch.svg')}
+              alt=""
+              loading="lazy"
+              decoding="async"
+              className="h-auto w-full drop-shadow-[0_8px_14px_rgba(217,143,164,0.22)]"
+              animate={
+                isFlipped
+                  ? { opacity: 0 }
+                  : {
+                    opacity: [0.92, 0.48, 1, 0.62, 0.92],
+                    x: [0, -2, -4, -1, 0],
+                    y: [0, -2, -4, -1, 0],
+                  }
+              }
+              transition={{
+                duration: 1.45,
+                ease: 'easeInOut',
+                repeat: isFlipped ? 0 : Infinity,
+                repeatDelay: 0.18,
+              }}
+            />
+          </motion.div>
         </article>
 
         <article className="absolute inset-0 flex rounded-lg border border-border bg-[linear-gradient(180deg,#FFFAFB_0%,#FBE8ED_58%,#FFF7F0_100%)] p-7 shadow-photo [backface-visibility:hidden] [transform:rotateY(180deg)]">
@@ -108,7 +174,7 @@ export default function PolaroidFlipCard({
               {backMessage}
             </p>
             <p className="mt-8 text-[1.05rem] font-normal text-rose">
-              다시 탭하면 사진으로 돌아가
+              다시 탭해서 돌아가기
             </p>
           </div>
         </article>

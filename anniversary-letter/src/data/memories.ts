@@ -14,6 +14,18 @@ export type Memory = {
   message: string;
   hiddenMessage: string;
   flipMessage: string;
+  extraPolaroids?: {
+    id: string;
+    date: string;
+    title: string;
+    media: {
+      type: 'image' | 'video';
+      src: string;
+      poster?: string;
+    };
+    message: string;
+    flipMessage: string;
+  }[];
   quiz: {
     question: string;
     options: string[];
@@ -34,7 +46,7 @@ export const memories: Memory[] = [
     id: 'jeju',
     date: 'EP.01',
     title: '제주도',
-    emotion: '시작',
+    emotion: '첫 만남',
     image: memoryAsset('01-jeju/01-jeju-01-1600.webp'),
     media: {
       type: 'video',
@@ -42,16 +54,42 @@ export const memories: Memory[] = [
       poster: memoryAsset('01-jeju/01-jeju-01-1600.webp'),
     },
     message:
-      '처음의 공기까지 오래 남아 있는 제주도. 그때의 장면들이 우리 이야기의 첫 페이지가 됐어.',
+      '빙글빙글 선미 😵‍💫😵‍💫😵‍💫',
     hiddenMessage:
       '돌아보면 그때는 몰랐지만, 너와 함께 남은 풍경들이 오래 마음에 붙어 있었어.',
     flipMessage:
-      '바람이 많이 불던 순간도, 웃던 얼굴도 지금 보니 전부 시작의 표시였어.',
+      '이거 한 100번은 본 듯..!',
+    extraPolaroids: [
+      {
+        id: 'jeju-extra-01',
+        date: 'EP.01-2',
+        title: '제주도 조각',
+        media: {
+          type: 'image',
+          src: memoryAsset('01-jeju/01-jeju-01-1600.webp'),
+        },
+        message: '가로로 넘겨보는 제주도의 두 번째 장면.',
+        flipMessage:
+          '이 카드에는 나중에 더 예쁜 제주도 사진을 한 장 더 넣어둘게.',
+      },
+      {
+        id: 'jeju-extra-02',
+        date: 'EP.01-3',
+        title: '제주도 한 장 더',
+        media: {
+          type: 'image',
+          src: memoryAsset('01-jeju/01-jeju-01-1600.webp'),
+        },
+        message: '처음의 기억을 조금 더 길게 남겨두고 싶어서.',
+        flipMessage:
+          '같은 사진이어도 넘겨보면 그날을 한 번 더 꺼내보는 느낌이 들어.',
+      },
+    ],
     quiz: {
-      question: '제주도 기억에서 제일 먼저 떠오르는 건?',
-      options: ['같이 남긴 영상', '공항 의자', '길 이름'],
-      answer: '같이 남긴 영상',
-      successMessage: '맞아. 움직이는 장면이라 더 생생하게 남아 있어.',
+      question: '제주도에서 우리가 처음 만났던 장소의 이름은?',
+      options: ['제주 여덟', '제주 아홉', '제주 열'],
+      answer: '제주 아홉',
+      successMessage: '기억하고 있구만!',
     },
   },
   {

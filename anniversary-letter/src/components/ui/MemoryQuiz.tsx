@@ -28,11 +28,10 @@ export default function MemoryQuiz({ quiz }: MemoryQuizProps) {
               key={option}
               type="button"
               onClick={() => setSelected(option)}
-              className={`min-h-12 rounded-full border px-4 text-left text-[1.15rem] font-normal transition active:scale-[0.98] ${
-                isSelected
-                  ? 'border-border bg-surface text-rose'
-                  : 'border-borderSoft bg-card/80 text-ink/70'
-              }`}
+              className={`min-h-12 rounded-full border px-4 text-left text-[1.15rem] font-normal transition active:scale-[0.98] ${isSelected
+                ? 'border-border bg-surface text-rose'
+                : 'border-borderSoft bg-card/80 text-ink/70'
+                }`}
             >
               {option}
             </button>
@@ -43,7 +42,7 @@ export default function MemoryQuiz({ quiz }: MemoryQuizProps) {
         <p className="mt-5 rounded-md bg-[linear-gradient(135deg,#FFF9FA_0%,#FBE8ED_100%)] px-4 py-3 text-[1.15rem] leading-8 text-ink/70">
           {isCorrect
             ? quiz.successMessage
-            : '조금 빗나갔지만 괜찮아. 우리 기억은 같이 다시 맞춰가면 되니까.'}
+            : '다시 기억해볼까?ㅠㅠㅠ'}
         </p>
       )}
     </div>
