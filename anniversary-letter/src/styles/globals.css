@@ -36,6 +36,9 @@
 
 html {
   min-height: 100%;
+  overflow-x: hidden;
+  overflow-y: visible;
+  overscroll-behavior-y: auto;
   scroll-behavior: smooth;
   background: var(--color-bg);
 }
@@ -47,7 +50,15 @@ body {
   font-family:
     Pretendard, "Apple SD Gothic Neo", "Noto Sans KR", system-ui, sans-serif;
   overflow-x: hidden;
+  overflow-y: visible;
+  overscroll-behavior-y: auto;
+  -webkit-overflow-scrolling: touch;
   -webkit-tap-highlight-color: transparent;
+}
+
+#root {
+  min-height: 100svh;
+  overflow: visible;
 }
 
 section {
@@ -68,5 +79,9 @@ img {
 
 button {
   font: inherit;
-  touch-action: manipulation;
+  touch-action: pan-y;
+}
+
+[role="button"] {
+  touch-action: pan-y;
 }

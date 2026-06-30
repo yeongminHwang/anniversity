@@ -11,10 +11,10 @@ const photoPreview = [
 
 export default function HeroSection() {
   return (
-    <section className="relative flex min-h-[100svh] items-center bg-bg px-5 pb-12 pt-[calc(env(safe-area-inset-top)+4.5rem)] font-hand">
+    <section className="pointer-events-none relative flex min-h-[100svh] items-center bg-bg px-5 pb-12 pt-[calc(env(safe-area-inset-top)+4.5rem)] font-hand select-none [-webkit-touch-callout:none] [-webkit-user-select:none]">
       <div className="pointer-events-none mx-auto flex w-full max-w-[402px] select-none flex-col justify-center gap-9 [-webkit-touch-callout:none] [-webkit-user-select:none]">
         <motion.div
-          className="text-center"
+          className="pointer-events-none text-center"
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: 'easeOut' }}
@@ -38,7 +38,7 @@ export default function HeroSection() {
         </motion.div>
 
         <motion.div
-          className="relative mx-auto h-[330px] w-full max-w-[350px]"
+          className="pointer-events-none relative mx-auto h-[330px] w-full max-w-[350px]"
           initial={{ opacity: 0, scale: 0.96 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.2, duration: 0.8, ease: 'easeOut' }}
@@ -53,7 +53,7 @@ export default function HeroSection() {
               alt=""
               draggable={false}
               decoding="async"
-              className="absolute h-56 w-44 select-none rounded-lg border-[10px] border-card object-cover shadow-photo [-webkit-user-drag:none]"
+              className="pointer-events-none absolute h-56 w-44 select-none rounded-lg border-[10px] border-card object-cover shadow-photo [-webkit-user-drag:none]"
               style={{
                 left: `${index * 22}%`,
                 top: `${index * 13}%`,

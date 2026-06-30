@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 export default function ScrollHint() {
   return (
     <motion.div
-      className="mx-auto flex w-fit flex-col items-center gap-3 text-[1.15rem] text-ink/60"
+      className="pointer-events-none mx-auto flex w-fit select-none flex-col items-center gap-3 text-[1.15rem] text-ink/60"
       initial={{ opacity: 0, y: -4 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 1, duration: 0.8 }}

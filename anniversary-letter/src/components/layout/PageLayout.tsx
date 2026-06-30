@@ -6,7 +6,7 @@ type PageLayoutProps = {
 
 export default function PageLayout({ children }: PageLayoutProps) {
   return (
-    <div className="min-h-[100svh] overflow-x-hidden bg-bg text-ink">
+    <div className="min-h-[100svh] bg-bg text-ink">
       <div
         aria-hidden="true"
         className="pointer-events-none fixed inset-0 -z-10 bg-[linear-gradient(180deg,#FFF5F7_0%,#FFF9FA_48%,#FFF7F0_100%)]"

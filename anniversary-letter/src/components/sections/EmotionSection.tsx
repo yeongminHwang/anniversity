@@ -13,7 +13,7 @@ const toneClasses: Record<EmotionNote['tone'], string> = {
 
 export default function EmotionSection() {
   return (
-    <section className="px-5 py-16 font-hand">
+    <section className="pointer-events-none px-5 py-16 font-hand select-none [-webkit-touch-callout:none] [-webkit-user-select:none]">
       <div className="mx-auto max-w-[402px]">
         <motion.div
           className="mb-10 text-center"

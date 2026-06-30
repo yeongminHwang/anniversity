@@ -16,8 +16,9 @@ export default function FloralWreath({
       aria-hidden="true"
       src={decorationAsset('floweralUp.svg')}
       alt=""
+      draggable={false}
       loading="lazy"
-      className={`mx-auto h-auto object-contain opacity-85 ${dimensions} ${className}`}
+      className={`pointer-events-none mx-auto h-auto select-none object-contain opacity-85 [-webkit-user-drag:none] ${dimensions} ${className}`}
     />
   );
 }

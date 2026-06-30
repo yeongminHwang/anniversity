@@ -1,4 +1,10 @@
-import { useCallback, useState } from 'react';
+import {
+  useCallback,
+  useRef,
+  useState,
+  type PointerEvent as ReactPointerEvent,
+  type TouchEvent as ReactTouchEvent,
+} from 'react';
 import { motion } from 'framer-motion';
 import { decorationAsset } from '../../data/assets';
 import type { Memory } from '../../data/memories';
@@ -15,6 +21,13 @@ export default function InteractiveMemorySection({
   index,
 }: InteractiveMemorySectionProps) {
   const [activeCardIndex, setActiveCardIndex] = useState(0);
+  const flickStateRef = useRef({
+    isHorizontal: false,
+    isTracking: false,
+    startTime: 0,
+    startX: 0,
+    startY: 0,
+  });
   const polaroidCards = [
     {
       id: `${memory.id}-main`,
@@ -42,6 +55,142 @@ export default function InteractiveMemorySection({
     },
     [cardCount],
   );
+  const startFlickTracking = useCallback((clientX: number, clientY: number) => {
+    flickStateRef.current = {
+      isHorizontal: false,
+      isTracking: true,
+      startTime: performance.now(),
+      startX: clientX,
+      startY: clientY,
+    };
+  }, []);
+  const updateFlickTracking = useCallback(
+    (clientX: number, clientY: number, preventScroll?: () => void) => {
+      if (!flickStateRef.current.isTracking) {
+        return;
+      }
+
+      const deltaX = Math.abs(clientX - flickStateRef.current.startX);
+      const deltaY = Math.abs(clientY - flickStateRef.current.startY);
+
+      if (
+        !flickStateRef.current.isHorizontal &&
+        deltaY > 14 &&
+        deltaY > deltaX * 1.25
+      ) {
+        flickStateRef.current.isTracking = false;
+        return;
+      }
+
+      if (deltaX > 9 && deltaX > deltaY * 1.08) {
+        flickStateRef.current.isHorizontal = true;
+        preventScroll?.();
+      }
+    },
+    [],
+  );
+  const finishFlickTracking = useCallback(
+    (clientX: number, clientY: number) => {
+      if (!flickStateRef.current.isTracking) {
+        return;
+      }
+
+      const deltaX = clientX - flickStateRef.current.startX;
+      const deltaY = clientY - flickStateRef.current.startY;
+      const elapsed = Math.max(performance.now() - flickStateRef.current.startTime, 1);
+      const velocityX = deltaX / elapsed;
+      const isHorizontalFlick =
+        Math.abs(deltaX) > Math.abs(deltaY) * 1.05 &&
+        (flickStateRef.current.isHorizontal ||
+          Math.abs(deltaX) > 20 ||
+          Math.abs(velocityX) > 0.22);
+
+      flickStateRef.current.isTracking = false;
+      flickStateRef.current.isHorizontal = false;
+
+      if (!isHorizontalFlick) {
+        return;
+      }
+
+      moveToCard(activeCardIndex + (deltaX < 0 ? 1 : -1));
+    },
+    [activeCardIndex, moveToCard],
+  );
+  const cancelFlickTracking = useCallback(() => {
+    flickStateRef.current.isTracking = false;
+    flickStateRef.current.isHorizontal = false;
+  }, []);
+  const handleCarouselPointerDown = useCallback(
+    (event: ReactPointerEvent<HTMLDivElement>) => {
+      if (event.pointerType === 'touch') {
+        return;
+      }
+
+      startFlickTracking(event.clientX, event.clientY);
+    },
+    [startFlickTracking],
+  );
+  const handleCarouselPointerMove = useCallback(
+    (event: ReactPointerEvent<HTMLDivElement>) => {
+      if (event.pointerType === 'touch') {
+        return;
+      }
+
+      updateFlickTracking(event.clientX, event.clientY);
+    },
+    [updateFlickTracking],
+  );
+  const handleCarouselPointerEnd = useCallback(
+    (event: ReactPointerEvent<HTMLDivElement>) => {
+      if (event.pointerType === 'touch') {
+        return;
+      }
+
+      finishFlickTracking(event.clientX, event.clientY);
+    },
+    [finishFlickTracking],
+  );
+  const handleCarouselTouchStart = useCallback(
+    (event: ReactTouchEvent<HTMLDivElement>) => {
+      const touch = event.touches[0];
+
+      if (!touch) {
+        return;
+      }
+
+      startFlickTracking(touch.clientX, touch.clientY);
+    },
+    [startFlickTracking],
+  );
+  const handleCarouselTouchMove = useCallback(
+    (event: ReactTouchEvent<HTMLDivElement>) => {
+      const touch = event.touches[0];
+
+      if (!touch) {
+        return;
+      }
+
+      updateFlickTracking(touch.clientX, touch.clientY, () => {
+        if (event.cancelable) {
+          event.preventDefault();
+        }
+      });
+    },
+    [updateFlickTracking],
+  );
+  const handleCarouselTouchEnd = useCallback(
+    (event: ReactTouchEvent<HTMLDivElement>) => {
+      const touch = event.changedTouches[0];
+
+      if (!touch) {
+        cancelFlickTracking();
+        return;
+      }
+
+      finishFlickTracking(touch.clientX, touch.clientY);
+    },
+    [cancelFlickTracking, finishFlickTracking],
+  );
 
   return (
     <motion.section
@@ -59,15 +208,17 @@ export default function InteractiveMemorySection({
         aria-hidden="true"
         src={decorationAsset('floweralUp.svg')}
         alt=""
+        draggable={false}
         loading="lazy"
-        className="absolute -right-12 top-7 -z-10 h-auto w-44 rotate-[24deg] opacity-[0.08]"
+        className="pointer-events-none absolute -right-12 top-7 -z-10 h-auto w-44 rotate-[24deg] select-none opacity-[0.08] [-webkit-user-drag:none]"
       />
       <img
         aria-hidden="true"
         src={decorationAsset('floweralDown.svg')}
         alt=""
+        draggable={false}
         loading="lazy"
-        className="absolute -bottom-4 -left-14 -z-10 h-auto w-44 rotate-[-18deg] opacity-[0.08]"
+        className="pointer-events-none absolute -bottom-4 -left-14 -z-10 h-auto w-44 rotate-[-18deg] select-none opacity-[0.08] [-webkit-user-drag:none]"
       />
 
       <div className="mx-auto flex w-full max-w-[402px] flex-col gap-5">
@@ -147,9 +298,19 @@ export default function InteractiveMemorySection({
               {activeCardIndex + 1}번째 카드
             </div>
 
-            <div className="overflow-hidden pb-2 select-none [touch-action:pan-y] [-webkit-touch-callout:none] [-webkit-user-select:none]">
+            <div
+              className="overflow-hidden pb-2 select-none [overscroll-behavior-x:contain] [touch-action:pan-y] [-webkit-touch-callout:none] [-webkit-user-select:none]"
+              onPointerDown={handleCarouselPointerDown}
+              onPointerMove={handleCarouselPointerMove}
+              onPointerCancel={cancelFlickTracking}
+              onPointerUp={handleCarouselPointerEnd}
+              onTouchStart={handleCarouselTouchStart}
+              onTouchMove={handleCarouselTouchMove}
+              onTouchCancel={cancelFlickTracking}
+              onTouchEnd={handleCarouselTouchEnd}
+            >
               <motion.div
-                className="flex"
+                className="flex [touch-action:pan-y]"
                 animate={{ x: `-${activeCardIndex * 100}%` }}
                 transition={{
                   duration: 0.58,

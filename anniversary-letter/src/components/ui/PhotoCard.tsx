@@ -41,7 +41,9 @@ export default function PhotoCard({
             src={image}
             poster={poster}
             aria-label={alt}
-            className="h-full w-full object-cover"
+            className={`h-full w-full object-cover ${
+              showVideoControls ? '' : 'pointer-events-none'
+            }`}
             autoPlay
             loop
             controls={showVideoControls}
@@ -49,6 +51,7 @@ export default function PhotoCard({
             playsInline
             preload="metadata"
             draggable={false}
+            tabIndex={showVideoControls ? 0 : -1}
           />
         ) : (
           <img
@@ -59,7 +62,7 @@ export default function PhotoCard({
             draggable={false}
             loading={loading}
             decoding="async"
-            className="h-full w-full select-none object-cover [-webkit-user-drag:none]"
+            className="pointer-events-none h-full w-full select-none object-cover [-webkit-user-drag:none]"
           />
         )}
       </div>

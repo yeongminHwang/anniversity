@@ -37,6 +37,7 @@ export default function PhotoGallerySection({
   const resumeTimerRef = useRef<number>();
   const activeIndexRef = useRef(0);
   const hasMeasuredRef = useRef(false);
+  const momentumVelocityRef = useRef(0);
   const dragControls = useDragControls();
   const trackX = useMotionValue(0);
   const itemCount = items.length;
@@ -88,17 +89,25 @@ export default function PhotoGallerySection({
 
   const pauseAutoLoop = useCallback(() => {
     window.clearTimeout(resumeTimerRef.current);
+    momentumVelocityRef.current = 0;
     isDraggingRef.current = true;
   }, []);
 
-  const resumeAutoLoop = useCallback(() => {
-    window.clearTimeout(resumeTimerRef.current);
-    resumeTimerRef.current = window.setTimeout(() => {
-      trackX.set(normalizeX(trackX.get()));
-      updateActiveIndex(trackX.get());
-      isDraggingRef.current = false;
-    }, 120);
-  }, [normalizeX, trackX, updateActiveIndex]);
+  const resumeAutoLoop = useCallback(
+    (velocityX = 0) => {
+      window.clearTimeout(resumeTimerRef.current);
+      resumeTimerRef.current = window.setTimeout(() => {
+        const clampedVelocity = Math.max(Math.min(velocityX, 3200), -3200);
+
+        trackX.set(normalizeX(trackX.get()));
+        updateActiveIndex(trackX.get());
+        momentumVelocityRef.current =
+          Math.abs(clampedVelocity) > 80 ? clampedVelocity : 0;
+        isDraggingRef.current = false;
+      }, 80);
+    },
+    [normalizeX, trackX, updateActiveIndex],
+  );
 
   const handlePointerDown = useCallback(
     (event: ReactPointerEvent<HTMLDivElement>) => {
@@ -125,12 +134,12 @@ export default function PhotoGallerySection({
       const deltaX = Math.abs(event.clientX - pointerStartRef.current.x);
       const deltaY = Math.abs(event.clientY - pointerStartRef.current.y);
 
-      if (deltaY > 8 && deltaY > deltaX) {
+      if (deltaY > 14 && deltaY > deltaX * 1.2) {
         shouldTrackPointerRef.current = false;
         return;
       }
 
-      if (deltaX > 10 && deltaX > deltaY * 1.25) {
+      if (deltaX > 7 && deltaX > deltaY * 1.08) {
         hasStartedDragRef.current = true;
         pauseAutoLoop();
         dragControls.start(event);
@@ -141,12 +150,13 @@ export default function PhotoGallerySection({
 
   const handlePointerEnd = useCallback(() => {
     shouldTrackPointerRef.current = false;
-
-    if (hasStartedDragRef.current) {
-      resumeAutoLoop();
-    }
-
     hasStartedDragRef.current = false;
+  }, []);
+
+  const handlePointerCancel = useCallback(() => {
+    shouldTrackPointerRef.current = false;
+    hasStartedDragRef.current = false;
+    resumeAutoLoop();
   }, [resumeAutoLoop]);
 
   useEffect(() => {
@@ -188,8 +198,19 @@ export default function PhotoGallerySection({
     }
 
     if (!isDraggingRef.current) {
-      const speed = loopWidth / (loopDuration * 1000);
-      trackX.set(normalizeX(trackX.get() - speed * delta));
+      const loopSpeed = loopWidth / (loopDuration * 1000);
+      const momentumStep = (momentumVelocityRef.current * delta) / 1000;
+      const nextX = trackX.get() - loopSpeed * delta + momentumStep;
+
+      trackX.set(normalizeX(nextX));
+
+      if (momentumVelocityRef.current !== 0) {
+        const decay = Math.pow(0.94, delta / 16.67);
+        const nextVelocity = momentumVelocityRef.current * decay;
+
+        momentumVelocityRef.current =
+          Math.abs(nextVelocity) < 12 ? 0 : nextVelocity;
+      }
     }
 
     updateActiveIndex(trackX.get());
@@ -234,7 +255,7 @@ export default function PhotoGallerySection({
           <motion.div
             ref={trackRef}
             className="flex w-max gap-5 [will-change:transform]"
-            style={{ x: trackX }}
+            style={{ x: trackX, touchAction: 'pan-y' }}
             drag={itemCount > 1 ? 'x' : false}
             dragControls={dragControls}
             dragDirectionLock
@@ -246,10 +267,12 @@ export default function PhotoGallerySection({
             dragMomentum={false}
             onPointerDown={handlePointerDown}
             onPointerMove={handlePointerMove}
-            onPointerCancel={handlePointerEnd}
+            onPointerCancel={handlePointerCancel}
             onPointerUp={handlePointerEnd}
             onDragStart={pauseAutoLoop}
-            onDragEnd={resumeAutoLoop}
+            onDragEnd={(_, info) => {
+              resumeAutoLoop(info.velocity.x);
+            }}
           >
             {repeatedItems.map((item, index) => (
               <GalleryCarouselCard

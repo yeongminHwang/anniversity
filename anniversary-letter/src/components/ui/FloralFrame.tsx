@@ -18,15 +18,17 @@ export default function FloralFrame({
         aria-hidden="true"
         src={decorationAsset('floweralUp.svg')}
         alt=""
+        draggable={false}
         loading="lazy"
-        className="absolute -left-8 top-3 h-auto w-32 rotate-[-18deg] opacity-20"
+        className="pointer-events-none absolute -left-8 top-3 h-auto w-32 rotate-[-18deg] select-none opacity-20 [-webkit-user-drag:none]"
       />
       <img
         aria-hidden="true"
         src={decorationAsset('floweralDown.svg')}
         alt=""
+        draggable={false}
         loading="lazy"
-        className="absolute -bottom-2 -right-8 h-auto w-32 rotate-[18deg] opacity-20"
+        className="pointer-events-none absolute -bottom-2 -right-8 h-auto w-32 rotate-[18deg] select-none opacity-20 [-webkit-user-drag:none]"
       />
       <div className="relative z-10">{children}</div>
     </div>

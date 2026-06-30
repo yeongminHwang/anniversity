@@ -5,7 +5,7 @@ import FloralWreath from '../ui/FloralWreath';
 export default function OpeningLetterSection() {
   return (
     <motion.section
-      className="px-5 py-16 font-hand"
+      className="pointer-events-none px-5 py-16 font-hand select-none [-webkit-touch-callout:none] [-webkit-user-select:none]"
       initial={{ opacity: 0, y: 32 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.35 }}

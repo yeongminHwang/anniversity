@@ -96,7 +96,8 @@ export default function OpeningDoorSection({
           <img
             src={decorationAsset('openingDoor.svg')}
             alt=""
-            className="relative h-full w-full object-contain opacity-[0.66] drop-shadow-[0_18px_32px_rgba(201,79,114,0.12)]"
+            draggable={false}
+            className="pointer-events-none relative h-full w-full select-none object-contain opacity-[0.66] drop-shadow-[0_18px_32px_rgba(201,79,114,0.12)] [-webkit-user-drag:none]"
           />
         </div>
 
@@ -104,7 +105,8 @@ export default function OpeningDoorSection({
           src={decorationAsset('floweralUp.svg')}
           alt=""
           aria-hidden="true"
-          className="relative z-10 mx-auto mb-5 h-auto w-[230px] max-w-[68vw] object-contain opacity-95"
+          draggable={false}
+          className="pointer-events-none relative z-10 mx-auto mb-5 h-auto w-[230px] max-w-[68vw] select-none object-contain opacity-95 [-webkit-user-drag:none]"
         />
 
         <div className="relative z-10 mx-auto max-w-[360px]">
@@ -131,7 +133,8 @@ export default function OpeningDoorSection({
           src={decorationAsset('floweralDown.svg')}
           alt=""
           aria-hidden="true"
-          className="relative z-10 mx-auto mt-6 h-auto w-[230px] max-w-[68vw] object-contain opacity-95"
+          draggable={false}
+          className="pointer-events-none relative z-10 mx-auto mt-6 h-auto w-[230px] max-w-[68vw] select-none object-contain opacity-95 [-webkit-user-drag:none]"
         />
       </motion.div>
     </section>

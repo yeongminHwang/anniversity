@@ -31,9 +31,10 @@ export default function MemorySection({ memory, index }: MemorySectionProps) {
           title={memory.title}
           date={memory.date}
           caption={memory.emotion}
+          enableTapScale={false}
         />
 
-        <div className="rounded-lg border border-borderSoft bg-paper/90 p-5 shadow-paper">
+        <div className="pointer-events-none select-none rounded-lg border border-borderSoft bg-paper/90 p-5 shadow-paper [-webkit-touch-callout:none] [-webkit-user-select:none]">
           <span className="mb-4 inline-flex rounded-full bg-blush px-4 py-2 text-[1.1rem] font-normal text-rose">
             {String(index + 1).padStart(2, '0')} · {memory.emotion}
           </span>

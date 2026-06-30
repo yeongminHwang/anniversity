@@ -21,7 +21,7 @@ export default function FinalLetterSection() {
 
   return (
     <motion.section
-      className="px-5 pb-[calc(env(safe-area-inset-bottom)+6rem)] pt-16 font-hand"
+      className="pointer-events-none px-5 pb-[calc(env(safe-area-inset-bottom)+6rem)] pt-16 font-hand select-none [-webkit-touch-callout:none] [-webkit-user-select:none]"
       initial={{ opacity: 0, y: 34 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.25 }}

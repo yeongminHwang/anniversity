@@ -93,7 +93,7 @@ export default function PolaroidFlipCard({
             alt=""
             draggable={false}
             loading="lazy"
-            className="absolute right-2 top-2 z-10 h-auto w-24 rotate-[16deg] select-none opacity-35 [-webkit-user-drag:none]"
+            className="pointer-events-none absolute right-2 top-2 z-10 h-auto w-24 rotate-[16deg] select-none opacity-35 [-webkit-user-drag:none]"
           />
           <div className="aspect-[4/5] overflow-hidden rounded-md bg-surface/50">
             {mediaType === 'video' ? (
@@ -101,13 +101,14 @@ export default function PolaroidFlipCard({
                 src={image}
                 poster={poster}
                 aria-label={`${title} 영상`}
-                className="h-full w-full object-cover"
+                className="pointer-events-none h-full w-full object-cover"
                 autoPlay
                 loop
                 muted
                 playsInline
                 preload="metadata"
                 draggable={false}
+                tabIndex={-1}
               />
             ) : (
               <img
@@ -118,7 +119,7 @@ export default function PolaroidFlipCard({
                 draggable={false}
                 loading="lazy"
                 decoding="async"
-                className="h-full w-full select-none object-cover [-webkit-user-drag:none]"
+                className="pointer-events-none h-full w-full select-none object-cover [-webkit-user-drag:none]"
               />
             )}
           </div>
