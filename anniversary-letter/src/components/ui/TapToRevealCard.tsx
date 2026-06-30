@@ -19,7 +19,7 @@ export default function TapToRevealCard({
       type="button"
       aria-expanded={isRevealed}
       onClick={() => setIsRevealed((current) => !current)}
-      className="w-full rounded-lg border border-rose/15 bg-paper/95 p-5 text-left font-hand shadow-paper active:scale-[0.99]"
+      className="w-full rounded-lg border border-borderSoft bg-paper/95 p-5 text-left font-hand shadow-paper active:scale-[0.99]"
       whileTap={{ scale: 0.99 }}
     >
       <span className="block text-[1.1rem] font-normal text-rose">{title}</span>

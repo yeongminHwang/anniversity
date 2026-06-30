@@ -12,7 +12,7 @@ export default function FloralFrame({
 }: FloralFrameProps) {
   return (
     <div
-      className={`relative overflow-hidden rounded-lg border border-rose/15 bg-paper/95 shadow-paper ${className}`}
+      className={`relative overflow-hidden rounded-lg border border-borderSoft bg-paper/95 shadow-paper ${className}`}
     >
       <img
         aria-hidden="true"

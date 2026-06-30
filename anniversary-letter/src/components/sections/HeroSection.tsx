@@ -11,7 +11,7 @@ const photoPreview = [
 
 export default function HeroSection() {
   return (
-    <section className="relative flex min-h-[100svh] items-center bg-white px-5 pb-12 pt-[calc(env(safe-area-inset-top)+4.5rem)] font-hand">
+    <section className="relative flex min-h-[100svh] items-center bg-bg px-5 pb-12 pt-[calc(env(safe-area-inset-top)+4.5rem)] font-hand">
       <div className="mx-auto flex w-full max-w-[402px] flex-col justify-center gap-9">
         <motion.div
           className="text-center"
@@ -52,7 +52,7 @@ export default function HeroSection() {
               sizes="176px"
               alt=""
               decoding="async"
-              className="absolute h-56 w-44 rounded-lg border-[10px] border-white object-cover shadow-photo"
+              className="absolute h-56 w-44 rounded-lg border-[10px] border-card object-cover shadow-photo"
               style={{
                 left: `${index * 22}%`,
                 top: `${index * 13}%`,

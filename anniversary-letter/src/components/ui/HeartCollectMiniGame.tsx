@@ -41,8 +41,8 @@ export default function HeartCollectMiniGame() {
                 onClick={() => togglePiece(piece)}
                 className={`flex min-h-14 flex-col items-center justify-center rounded-md border text-[1rem] font-normal transition active:scale-95 ${
                   isCollected
-                    ? 'border-rose bg-blush text-rose'
-                    : 'border-leaf/20 bg-white/80 text-ink/55'
+                    ? 'border-border bg-surface text-rose'
+                    : 'border-borderSoft bg-card/80 text-ink/55'
                 }`}
               >
                 <span
@@ -50,7 +50,7 @@ export default function HeartCollectMiniGame() {
                   className={`h-4 w-4 rounded-full border ${
                     isCollected
                       ? 'border-petal bg-petal/70'
-                      : 'border-leaf/30 bg-leafsoft'
+                      : 'border-borderSoft bg-surfaceSoft'
                   }`}
                 />
                 <span className="mt-1">{piece}</span>
@@ -58,9 +58,9 @@ export default function HeartCollectMiniGame() {
             );
           })}
         </div>
-        <div className="mt-5 h-2 overflow-hidden rounded-full bg-leafsoft">
+        <div className="mt-5 h-2 overflow-hidden rounded-full bg-surfaceSoft">
           <div
-            className="h-full rounded-full bg-rose transition-all duration-300"
+            className="h-full rounded-full bg-accent transition-all duration-300"
             style={{ width: `${(collected.length / pieces.length) * 100}%` }}
           />
         </div>

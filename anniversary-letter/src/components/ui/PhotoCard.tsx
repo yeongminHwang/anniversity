@@ -27,11 +27,11 @@ export default function PhotoCard({
 }: PhotoCardProps) {
   return (
     <motion.figure
-      className={`overflow-hidden rounded-lg border border-rose/15 bg-paper p-3 shadow-photo ${className}`}
+      className={`overflow-hidden rounded-lg border border-borderSoft bg-paper p-3 shadow-photo ${className}`}
       whileTap={{ scale: 0.99 }}
       transition={{ duration: 0.25, ease: 'easeOut' }}
     >
-      <div className="aspect-[4/5] overflow-hidden rounded-md bg-blush/40">
+      <div className="aspect-[4/5] overflow-hidden rounded-md bg-surface/40">
         {mediaType === 'video' ? (
           <LazyVideo
             src={image}

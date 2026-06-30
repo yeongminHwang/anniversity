@@ -3,8 +3,31 @@
 @tailwind utilities;
 
 :root {
-  color: #3a2b2b;
-  background: #ffffff;
+  --color-bg: #fff5f7;
+  --color-bg-soft: #fff9fa;
+  --color-bg-warm: #fff7f0;
+  --color-surface: #f7dce3;
+  --color-surface-soft: #fbe8ed;
+  --color-surface-elevated: #fffafb;
+  --color-card: #fff9fa;
+  --color-primary: #edbec9;
+  --color-primary-hover: #e7aebe;
+  --color-primary-active: #d98fa4;
+  --color-accent: #d98fa4;
+  --color-accent-hover: #cc7f96;
+  --color-accent-active: #b96d84;
+  --color-text: #4b343b;
+  --color-text-soft: #6f545c;
+  --color-text-muted: #967982;
+  --color-text-inverse: #fff9fa;
+  --color-border: rgba(217, 143, 164, 0.28);
+  --color-border-soft: rgba(237, 190, 201, 0.42);
+  --color-divider: rgba(75, 52, 59, 0.12);
+  --shadow-soft: 0 12px 32px rgba(75, 52, 59, 0.08);
+  --shadow-card: 0 18px 44px rgba(126, 82, 94, 0.12);
+  --shadow-floating: 0 24px 64px rgba(126, 82, 94, 0.16);
+  color: var(--color-text);
+  background: var(--color-bg);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -14,7 +37,7 @@
 html {
   min-height: 100%;
   scroll-behavior: smooth;
-  background: #ffffff;
+  background: var(--color-bg);
 }
 
 body {
@@ -34,8 +57,8 @@ section {
 }
 
 ::selection {
-  color: #3a2b2b;
-  background: #f9dce6;
+  color: var(--color-text);
+  background: var(--color-surface);
 }
 
 img {

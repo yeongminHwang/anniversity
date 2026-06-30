@@ -43,13 +43,13 @@ export default function FinalLetterSection() {
           type="button"
           aria-pressed={isPromised}
           onClick={() => setIsPromised(true)}
-          className="mt-5 min-h-14 w-full rounded-full border border-rose/30 bg-white/80 px-6 py-4 text-[1.25rem] font-normal text-rose shadow-sm transition active:scale-[0.98]"
+          className="mt-5 min-h-14 w-full rounded-full border border-border bg-card/80 px-6 py-4 text-[1.25rem] font-normal text-rose shadow-sm transition active:scale-[0.98]"
         >
           앞으로도 함께하기
         </button>
         {isPromised && (
           <motion.p
-            className="mt-4 rounded-lg border border-leaf/20 bg-[linear-gradient(135deg,#fff8fb_0%,#f6fbf5_100%)] p-4 text-[1.2rem] leading-8 text-ink/70"
+            className="mt-4 rounded-lg border border-borderSoft bg-[linear-gradient(135deg,#FFF9FA_0%,#FBE8ED_100%)] p-4 text-[1.2rem] leading-8 text-ink/70"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, ease: 'easeOut' }}

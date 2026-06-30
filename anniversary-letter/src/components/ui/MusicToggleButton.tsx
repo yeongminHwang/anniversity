@@ -23,7 +23,7 @@ export default function MusicToggleButton({
         aria-pressed={isPlaying}
         title={label}
         onClick={onToggle}
-        className="flex h-11 w-11 items-center justify-center rounded-full border border-rose/20 bg-white/95 text-rose shadow-paper backdrop-blur transition active:scale-[0.96]"
+        className="flex h-11 w-11 items-center justify-center rounded-full border border-border bg-card/90 text-accent shadow-paper backdrop-blur transition active:scale-[0.96]"
       >
         {hasError ? (
           <span

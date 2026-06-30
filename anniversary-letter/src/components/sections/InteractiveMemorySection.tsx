@@ -16,12 +16,12 @@ export default function InteractiveMemorySection({
 }: InteractiveMemorySectionProps) {
   const sectionTone =
     index % 2 === 0
-      ? 'bg-[linear-gradient(180deg,#ffffff_0%,#fff8fb_44%,#ffffff_100%)]'
-      : 'bg-[linear-gradient(180deg,#ffffff_0%,#f7fbf6_48%,#ffffff_100%)]';
+      ? 'bg-[linear-gradient(180deg,#FFF5F7_0%,#FFF9FA_48%,#FFF5F7_100%)]'
+      : 'bg-[linear-gradient(180deg,#FFF5F7_0%,#FFF7F0_52%,#FFF9FA_100%)]';
 
   return (
     <motion.section
-      className={`relative isolate min-h-[100svh] overflow-hidden border-y border-rose/10 px-5 py-16 font-hand shadow-[inset_0_18px_42px_rgba(201,79,114,0.035)] sm:px-6 ${sectionTone}`}
+      className={`relative isolate min-h-[100svh] overflow-hidden border-y border-borderSoft px-5 py-16 font-hand shadow-[inset_0_18px_42px_rgba(217,143,164,0.04)] sm:px-6 ${sectionTone}`}
       initial={{ opacity: 0, y: 32 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.22 }}
@@ -50,7 +50,7 @@ export default function InteractiveMemorySection({
         <div className="pb-2 text-center">
           <div className="mb-4 flex items-center gap-3">
             <span className="h-px flex-1 bg-gradient-to-r from-transparent to-rose/25" />
-            <span className="rounded-full border border-rose/20 bg-white/80 px-4 py-2 text-[1.05rem] font-normal text-rose shadow-sm">
+            <span className="rounded-full border border-border bg-card/85 px-4 py-2 text-[1.05rem] font-normal text-rose shadow-sm">
               {memory.date}
             </span>
             <span className="h-px flex-1 bg-gradient-to-l from-transparent to-rose/25" />

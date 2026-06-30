@@ -45,7 +45,7 @@ export default function PolaroidFlipCard({
         animate={{ rotateY: isFlipped ? 180 : 0 }}
         transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
       >
-        <article className="absolute inset-0 rounded-lg border border-rose/15 bg-paper p-3 shadow-photo [backface-visibility:hidden]">
+        <article className="absolute inset-0 rounded-lg border border-borderSoft bg-paper p-3 shadow-photo [backface-visibility:hidden]">
           <img
             aria-hidden="true"
             src={decorationAsset('floweralUp.svg')}
@@ -53,7 +53,7 @@ export default function PolaroidFlipCard({
             loading="lazy"
             className="absolute right-2 top-2 z-10 h-auto w-24 rotate-[16deg] opacity-35"
           />
-          <div className="aspect-[4/5] overflow-hidden rounded-md bg-blush/50">
+          <div className="aspect-[4/5] overflow-hidden rounded-md bg-surface/50">
             {mediaType === 'video' ? (
               <LazyVideo
                 src={image}
@@ -98,7 +98,7 @@ export default function PolaroidFlipCard({
           </div>
         </article>
 
-        <article className="absolute inset-0 flex rounded-lg border border-rose/20 bg-[linear-gradient(180deg,#ffffff_0%,#fff8fb_58%,#f7fbf6_100%)] p-7 shadow-photo [backface-visibility:hidden] [transform:rotateY(180deg)]">
+        <article className="absolute inset-0 flex rounded-lg border border-border bg-[linear-gradient(180deg,#FFFAFB_0%,#FBE8ED_58%,#FFF7F0_100%)] p-7 shadow-photo [backface-visibility:hidden] [transform:rotateY(180deg)]">
           <div className="m-auto text-center">
             <p className="text-[1.05rem] font-normal text-rose">{date}</p>
             <h3 className="mt-3 text-[2.35rem] font-normal leading-tight text-ink">

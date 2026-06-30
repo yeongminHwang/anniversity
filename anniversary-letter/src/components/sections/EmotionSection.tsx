@@ -5,10 +5,10 @@ import FloralFrame from '../ui/FloralFrame';
 import FloralWreath from '../ui/FloralWreath';
 
 const toneClasses: Record<EmotionNote['tone'], string> = {
-  rose: 'border-rose/25 bg-blush/60 text-rose',
-  sage: 'border-leaf/30 bg-leafsoft/60 text-leaf',
-  sky: 'border-skysoft/40 bg-skysoft/40 text-leaf',
-  honey: 'border-honey/40 bg-honey/20 text-honey',
+  rose: 'border-border bg-surface text-rose',
+  sage: 'border-borderSoft bg-surfaceSoft text-textSoft',
+  sky: 'border-info/25 bg-infoBg text-info',
+  honey: 'border-warning/30 bg-warningBg text-warning',
 };
 
 export default function EmotionSection() {

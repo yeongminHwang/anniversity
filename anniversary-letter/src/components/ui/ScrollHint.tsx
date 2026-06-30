@@ -9,9 +9,9 @@ export default function ScrollHint() {
       transition={{ delay: 1, duration: 0.8 }}
     >
       <span className="font-hand">천천히 내려보기</span>
-      <span className="relative h-10 w-6 rounded-full border border-rose/40 bg-paper/70 shadow-sm">
+      <span className="relative h-10 w-6 rounded-full border border-border bg-paper/75 shadow-sm">
         <motion.span
-          className="absolute left-1/2 top-2 h-2 w-2 -translate-x-1/2 rounded-full bg-rose"
+          className="absolute left-1/2 top-2 h-2 w-2 -translate-x-1/2 rounded-full bg-accent"
           animate={{ y: [0, 14, 0], opacity: [1, 0.35, 1] }}
           transition={{
             duration: 1.8,

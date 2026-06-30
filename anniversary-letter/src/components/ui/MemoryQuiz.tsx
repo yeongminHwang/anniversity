@@ -14,7 +14,7 @@ export default function MemoryQuiz({ quiz }: MemoryQuizProps) {
   const isCorrect = selected === quiz.answer;
 
   return (
-    <div className="rounded-lg border border-rose/15 bg-paper/95 p-5 font-hand shadow-paper">
+    <div className="rounded-lg border border-borderSoft bg-paper/95 p-5 font-hand shadow-paper">
       <p className="text-[1.1rem] font-normal text-rose">작은 기억 퀴즈</p>
       <h3 className="mt-2 text-[1.5rem] font-normal leading-snug text-ink">
         {quiz.question}
@@ -30,8 +30,8 @@ export default function MemoryQuiz({ quiz }: MemoryQuizProps) {
               onClick={() => setSelected(option)}
               className={`min-h-12 rounded-full border px-4 text-left text-[1.15rem] font-normal transition active:scale-[0.98] ${
                 isSelected
-                  ? 'border-rose bg-blush text-rose'
-                  : 'border-leaf/20 bg-white/80 text-ink/70'
+                  ? 'border-border bg-surface text-rose'
+                  : 'border-borderSoft bg-card/80 text-ink/70'
               }`}
             >
               {option}
@@ -40,7 +40,7 @@ export default function MemoryQuiz({ quiz }: MemoryQuizProps) {
         })}
       </div>
       {selected && (
-        <p className="mt-5 rounded-md bg-[linear-gradient(135deg,#fff8fb_0%,#f6fbf5_100%)] px-4 py-3 text-[1.15rem] leading-8 text-ink/70">
+        <p className="mt-5 rounded-md bg-[linear-gradient(135deg,#FFF9FA_0%,#FBE8ED_100%)] px-4 py-3 text-[1.15rem] leading-8 text-ink/70">
           {isCorrect
             ? quiz.successMessage
             : '조금 빗나갔지만 괜찮아. 우리 기억은 같이 다시 맞춰가면 되니까.'}
