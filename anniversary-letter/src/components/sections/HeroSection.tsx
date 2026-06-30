@@ -4,9 +4,9 @@ import FloralWreath from '../ui/FloralWreath';
 import ScrollHint from '../ui/ScrollHint';
 
 const photoPreview = [
-  memoryAsset('4-창원 데이트/4-창원 데이트-09.jpg'),
-  memoryAsset('4-창원 데이트/4-창원 데이트-08-1600.webp'),
-  memoryAsset('3-전역/3-전역-01-1600.webp'),
+  memoryAsset('04-changwon-date/04-changwon-date-09.jpg'),
+  memoryAsset('04-changwon-date/04-changwon-date-08-1600.webp'),
+  memoryAsset('03-discharge/03-discharge-01-1600.webp'),
 ];
 
 export default function HeroSection() {

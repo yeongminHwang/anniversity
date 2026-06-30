@@ -1,7 +1,7 @@
 const baseUrl = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 
 export const publicAsset = (path: string) =>
-  encodeURI(`${baseUrl}${path.replace(/^\/+/, '').normalize('NFD')}`);
+  `${baseUrl}${path.replace(/^\/+/, '')}`;
 
 export const memoryAsset = (path: string) =>
   publicAsset(`images/memories/${path}`);

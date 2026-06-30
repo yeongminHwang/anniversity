@@ -35,11 +35,11 @@ export const memories: Memory[] = [
     date: 'EP.01',
     title: '제주도',
     emotion: '시작',
-    image: memoryAsset('1-제주도/1-제주도-01-1600.webp'),
+    image: memoryAsset('01-jeju/01-jeju-01-1600.webp'),
     media: {
       type: 'video',
-      src: memoryAsset('1-제주도/1-제주도-01.mp4'),
-      poster: memoryAsset('1-제주도/1-제주도-01-1600.webp'),
+      src: memoryAsset('01-jeju/01-jeju-01.mp4'),
+      poster: memoryAsset('01-jeju/01-jeju-01-1600.webp'),
     },
     message:
       '처음의 공기까지 오래 남아 있는 제주도. 그때의 장면들이 우리 이야기의 첫 페이지가 됐어.',
@@ -59,10 +59,10 @@ export const memories: Memory[] = [
     date: 'EP.02',
     title: '썸',
     emotion: '설렘',
-    image: memoryAsset('2-썸/2-썸-02-1600.webp'),
+    image: memoryAsset('02-sseom/02-sseom-02-1600.webp'),
     media: {
       type: 'image',
-      src: memoryAsset('2-썸/2-썸-02-1600.webp'),
+      src: memoryAsset('02-sseom/02-sseom-02-1600.webp'),
     },
     message:
       '아직 말로 다 정하지 못한 마음들이 사진 사이에 조용히 남아 있던 시간.',
@@ -82,10 +82,10 @@ export const memories: Memory[] = [
     date: 'EP.03',
     title: '전역',
     emotion: '축하',
-    image: memoryAsset('3-전역/3-전역-01-1600.webp'),
+    image: memoryAsset('03-discharge/03-discharge-01-1600.webp'),
     media: {
       type: 'image',
-      src: memoryAsset('3-전역/3-전역-01-1600.webp'),
+      src: memoryAsset('03-discharge/03-discharge-01-1600.webp'),
     },
     message:
       '하나의 시간이 끝나고 새로운 하루가 시작되던 날, 네가 곁에 있어서 더 특별했어.',
@@ -105,10 +105,10 @@ export const memories: Memory[] = [
     date: 'EP.04',
     title: '창원 데이트',
     emotion: '다정함',
-    image: memoryAsset('4-창원 데이트/4-창원 데이트-08-1600.webp'),
+    image: memoryAsset('04-changwon-date/04-changwon-date-08-1600.webp'),
     media: {
       type: 'image',
-      src: memoryAsset('4-창원 데이트/4-창원 데이트-08-1600.webp'),
+      src: memoryAsset('04-changwon-date/04-changwon-date-08-1600.webp'),
     },
     message:
       '창원에서 보낸 하루는 특별한 말보다 같이 걷던 분위기로 더 선명하게 남아 있어.',
@@ -128,10 +128,10 @@ export const memories: Memory[] = [
     date: 'EP.05',
     title: '마산 데이트',
     emotion: '웃음',
-    image: memoryAsset('5-마산 데이트/5-마산 데이트-03-1600.webp'),
+    image: memoryAsset('05-masan-date/05-masan-date-03-1600.webp'),
     media: {
       type: 'image',
-      src: memoryAsset('5-마산 데이트/5-마산 데이트-03-1600.webp'),
+      src: memoryAsset('05-masan-date/05-masan-date-03-1600.webp'),
     },
     message:
       '마산에서의 우리는 조금 더 자연스러웠고, 그래서 사진 속 표정도 더 따뜻해 보여.',
@@ -151,10 +151,10 @@ export const memories: Memory[] = [
     date: 'EP.06',
     title: '행궁동 데이트',
     emotion: '산책',
-    image: memoryAsset('6-행궁동 데이트/6-행궁동 데이트-03-1600.webp'),
+    image: memoryAsset('06-haenggung-date/06-haenggung-date-03-1600.webp'),
     media: {
       type: 'image',
-      src: memoryAsset('6-행궁동 데이트/6-행궁동 데이트-03-1600.webp'),
+      src: memoryAsset('06-haenggung-date/06-haenggung-date-03-1600.webp'),
     },
     message:
       '행궁동을 걸으며 나눈 작은 말들이 생각보다 오래 마음에 남았어.',
@@ -174,10 +174,10 @@ export const memories: Memory[] = [
     date: 'EP.07',
     title: '보정동 데이트',
     emotion: '포근함',
-    image: memoryAsset('7-보정동 데이트/7-보정동 데이트-03-1600.webp'),
+    image: memoryAsset('07-bojeong-date/07-bojeong-date-03-1600.webp'),
     media: {
       type: 'image',
-      src: memoryAsset('7-보정동 데이트/7-보정동 데이트-03-1600.webp'),
+      src: memoryAsset('07-bojeong-date/07-bojeong-date-03-1600.webp'),
     },
     message:
       '보정동의 거리처럼 조용하고 예쁜 순간들이 우리 사이에도 차곡차곡 쌓였어.',
@@ -197,10 +197,10 @@ export const memories: Memory[] = [
     date: 'EP.08',
     title: '안동 데이트',
     emotion: '여행',
-    image: memoryAsset('8-안동 데이트/8-안동 데이트-05-1600.webp'),
+    image: memoryAsset('08-andong-date/08-andong-date-05-1600.webp'),
     media: {
       type: 'image',
-      src: memoryAsset('8-안동 데이트/8-안동 데이트-05-1600.webp'),
+      src: memoryAsset('08-andong-date/08-andong-date-05-1600.webp'),
     },
     message:
       '안동에서 본 풍경보다 더 오래 남은 건, 그 안에서 같은 방향을 보던 우리였어.',
@@ -220,10 +220,10 @@ export const memories: Memory[] = [
     date: 'EP.09',
     title: '부산 데이트',
     emotion: '기념',
-    image: memoryAsset('9-부산 데이트/9-부산 데이트-05-1600.webp'),
+    image: memoryAsset('09-busan-date/09-busan-date-05-1600.webp'),
     media: {
       type: 'image',
-      src: memoryAsset('9-부산 데이트/9-부산 데이트-05-1600.webp'),
+      src: memoryAsset('09-busan-date/09-busan-date-05-1600.webp'),
     },
     message:
       '부산에서의 우리는 첫 번째 1년을 지나, 다음 계절을 같이 바라보는 사람들 같았어.',
