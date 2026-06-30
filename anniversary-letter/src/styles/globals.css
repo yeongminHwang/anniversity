@@ -54,6 +54,7 @@ section {
   font-family:
     "AnniversaryHand", "Ownglyph YoonwooChae", "온글잎 윤우체",
     "Apple SD Gothic Neo", "Noto Sans KR", cursive;
+  touch-action: pan-y;
 }
 
 ::selection {

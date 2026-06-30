@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import { fireQuizConfetti } from '../../lib/confetti';
 
 type MemoryQuizProps = {
   quiz: {
@@ -31,16 +32,22 @@ export default function MemoryQuiz({ quiz }: MemoryQuizProps) {
   const [showCelebration, setShowCelebration] = useState(false);
   const isCorrect = selected === quiz.answer;
   const handleSelect = (option: string) => {
+    const wasAlreadyCorrect = selected === quiz.answer;
+
     setSelected(option);
 
     if (option === quiz.answer) {
       setShowCelebration(true);
       setCelebrationKey((current) => current + 1);
+
+      if (!wasAlreadyCorrect) {
+        fireQuizConfetti();
+      }
     }
   };
 
   return (
-    <div className="pointer-events-auto relative overflow-hidden rounded-lg border border-borderSoft bg-paper/95 p-5 font-hand shadow-paper">
+    <div className="pointer-events-auto relative overflow-hidden rounded-lg border border-borderSoft bg-paper/95 p-5 font-hand shadow-paper [touch-action:pan-y]">
       <AnimatePresence>
         {showCelebration && (
           <motion.div

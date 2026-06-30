@@ -12,6 +12,8 @@ type PhotoCardProps = {
   caption?: string;
   loading?: 'lazy' | 'eager';
   className?: string;
+  enableTapScale?: boolean;
+  showVideoControls?: boolean;
 };
 
 export default function PhotoCard({
@@ -24,11 +26,13 @@ export default function PhotoCard({
   caption,
   loading = 'lazy',
   className = '',
+  enableTapScale = true,
+  showVideoControls = true,
 }: PhotoCardProps) {
   return (
     <motion.figure
       className={`overflow-hidden rounded-lg border border-borderSoft bg-paper p-3 shadow-photo [touch-action:pan-y] ${className}`}
-      whileTap={{ scale: 0.99 }}
+      whileTap={enableTapScale ? { scale: 0.99 } : undefined}
       transition={{ duration: 0.25, ease: 'easeOut' }}
     >
       <div className="aspect-[4/5] overflow-hidden rounded-md bg-surface/40">
@@ -40,7 +44,7 @@ export default function PhotoCard({
             className="h-full w-full object-cover"
             autoPlay
             loop
-            controls
+            controls={showVideoControls}
             muted
             playsInline
             preload="metadata"

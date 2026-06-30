@@ -77,7 +77,7 @@ export default function PolaroidFlipCard({
           toggle();
         }
       }}
-      className="select-none font-hand [perspective:1200px] [-webkit-touch-callout:none] [-webkit-user-drag:none] [-webkit-user-select:none]"
+      className="select-none font-hand [perspective:1200px] [touch-action:pan-y] [-webkit-touch-callout:none] [-webkit-user-drag:none] [-webkit-user-select:none]"
     >
       <motion.div
         className="relative min-h-[620px] w-full rounded-lg outline-none [touch-action:pan-y] [transform-style:preserve-3d]"

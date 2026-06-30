@@ -1,54 +1,152 @@
 # AGENTS.md
 
-## Project Name
+Read `AGENTS.md` and `PROJECT_VISION.md` before working on this project.
 
-1st Anniversary Scroll Love Letter
+## Project
 
-## Project Goal
+**1st Anniversary Scroll Love Letter** is a React + Vite anniversary website for a private first-anniversary gift.
 
-Build a romantic 1st anniversary website for my girlfriend.
+The site is a mobile-first, scroll-based romantic letter. The emotional goal is more important than technical complexity: it should feel warm, sincere, elegant, personal, and memorable.
 
-The website should work like a scroll-based love letter.
-As the user scrolls, photos and short letter messages appear one by one, telling the story of our first year together.
+This project does not use a 3D avatar or Three.js.
 
-This project does not use a 3D avatar.
-
-The emotional goal is more important than technical complexity.
-The final website should feel warm, sincere, romantic, personal, and memorable.
-
----
-
-## Tech Stack
+## Current Stack
 
 - Vite
 - React
 - TypeScript
 - Tailwind CSS
 - Framer Motion
+- js-confetti
+- Static frontend only
+- GitHub Pages deployment with a custom domain
 
----
+## Deployment Notes
 
-## Main Concept
+- Custom domain: `seonmi.o-r.kr`
+- `public/CNAME` must stay in place.
+- `vite.config.ts` uses `base: '/'`, which is correct for the custom-domain GitHub Pages deployment.
+- Static assets should be referenced through helpers in `src/data/assets.ts`, not by fragile hardcoded absolute strings.
+- Keep Korean, spaces, and special characters out of new asset file and directory names. Prefer English kebab-case or numbered names.
 
-A scroll-based interactive love letter.
+## Source Of Truth
 
-Each section represents a memory, emotion, or moment from our relationship.
+- Memory story data: `src/data/memories.ts`
+- Daily gallery data: `src/data/dailyGallery.ts`
+- Asset URL helpers: `src/data/assets.ts`
+- Memory media: `public/images/memories/`
+- Daily gallery media: `public/images/daily/`
+- Decoration SVGs: `public/images/decorations/`
+- Background music: `public/audio/background-music.mp3`
+- Handwritten font: `public/fonts/handwriting/MyHandwriting.woff2` with TTF fallback
 
-Each section includes:
+Do not hardcode memory or gallery content inside section components unless the component is intentionally self-contained, such as `SeonmiEncyclopediaSection`.
 
-- date
-- title
-- photo or photo collage
-- short Korean letter-style message
-- small decorative elements
+## Active Page Flow
 
-The website should feel like reading a private anniversary letter while looking through memories.
+The rendered page flow lives in `src/pages/HomePage.tsx`.
 
----
+1. `OpeningDoorSection`
+2. `MusicToggleButton`
+3. `HeroSection`
+4. `OpeningLetterSection`
+5. `InteractiveMemorySection` for every item in `memories`
+6. `SeonmiEncyclopediaSection`
+7. `PhotoGallerySection` using `dailyGalleryItems`
+8. `FinalLetterSection`
 
-## Project Structure Rules
+`EmotionSection`, `MemorySection`, and `HeartCollectMiniGame` still exist as legacy or supporting components but are not part of the current rendered flow. Do not reintroduce them unless explicitly requested.
 
-Use this structure:
+## Design Direction
+
+The current theme is a premium romantic wedding-invitation/photo-album mood.
+
+Use:
+
+- Warm pastel pinks and ivory paper surfaces
+- Soft floral decoration using existing SVG assets
+- Deep rose accents
+- Soft shadows and subtle gradients
+- Handwritten Korean typography in major sections
+- Mobile-first spacing for roughly 393px wide iPhone screens
+- Gentle fade, slide, flip, and carousel motion
+
+Avoid:
+
+- Dark themes
+- Neon colors
+- Cyberpunk styling
+- Childish or flashy effects
+- Heavy bouncing animations
+- Decorative background icon clutter
+- New hand-drawn floral SVGs when an existing asset fits
+
+## Color System
+
+The core palette is already reflected in Tailwind and CSS variables.
+
+- Background: `#FFF5F7`
+- Surface: `#F7DCE3`
+- Primary pink: `#EDBEC9`
+- Accent pink: `#D98FA4`
+- Primary text: `#4B343B`
+
+Use Tailwind tokens from `tailwind.config.js`, such as `bg`, `bgSoft`, `paper`, `card`, `ink`, `rose`, `accent`, `border`, and `borderSoft`.
+
+## Typography
+
+- Use `font-hand` for the romantic handwritten mood across major sections.
+- The local font is declared in `src/styles/globals.css`.
+- Keep line-height generous because the handwriting font needs breathing room.
+- Avoid tiny text in buttons, cards, and captions on mobile.
+
+## Interaction Rules
+
+### Opening Door
+
+- Music must start only after the user taps the opening button.
+- The opening button currently says `첫 장 넘기기`.
+- Do not autoplay background music on page load.
+- Keep the door motion subtle and invitation-like.
+
+### Music
+
+- Use `public/audio/background-music.mp3`.
+- Keep `MusicToggleButton` icon-only and minimal.
+- Handle browser audio play failure gracefully.
+
+### Memory Cards
+
+- `InteractiveMemorySection` uses Polaroid flip cards plus a quiz slide.
+- Polaroid cards must remain tappable/flippable.
+- Vertical swipes inside memory sections should scroll the full page smoothly.
+- Do not let inner horizontal/drag UI trap vertical page scrolling.
+- `flipMessage` and card text should support line breaks with `whitespace-pre-line`.
+
+### Quiz
+
+- Quiz options must be clickable.
+- Correct answers show a positive state and confetti.
+- Wrong answers should shake only the wrong selected option; do not highlight the correct answer after a wrong click.
+
+### Carousels
+
+- `SeonmiEncyclopediaSection` and `PhotoGallerySection` use film-like continuous looping carousels.
+- Carousels must support horizontal dragging.
+- During dragging, automatic loop motion should pause and resume after release.
+- Use `touch-action: pan-y` so vertical gestures continue to scroll the page.
+
+## Asset Rules
+
+- Use `memoryAsset`, `dailyAsset`, `decorationAsset`, and `audioAsset`.
+- Keep `public/images/daily/` filenames as `daily-01.jpg` through `daily-21.jpg` and `daily-22.mp4`.
+- Keep memory folders URL-safe, for example `04-changwon-date`.
+- Prefer WebP variants for large memory hero images when available (`-800.webp`, `-1600.webp`).
+- `responsiveWebpSrcSet` only applies to `-1600.webp` images.
+- Lazy-load non-critical images and videos.
+- Videos in cards should be muted, inline, looped, and allowed to autoplay after lazy loading.
+
+## Project Structure
 
 ```txt
 src/
@@ -63,327 +161,29 @@ src/
 └─ main.tsx
 ```
 
-Do not put all code in `App.tsx`.
+Keep components small and readable. Do not move all logic into `App.tsx`.
 
-Keep components small and readable.
+## Editing Guidance
 
-Memory content must be stored in:
+- Preserve the current UI, layout rhythm, and emotional tone unless explicitly asked to redesign.
+- Prefer existing component patterns over new abstractions.
+- Keep changes scoped to the requested section or data file.
+- Do not revert unrelated user changes in the working tree.
+- Use `apply_patch` for manual edits.
 
-```txt
-src/data/memories.ts
-```
+## Verification
 
-Memory photos must be stored in:
-
-```txt
-public/images/memories/
-```
-
----
-
-## Agent Roles
-
-### 1. PM Agent
-
-Responsible for:
-
-- Planning the page flow
-- Breaking the website into sections
-- Keeping the project focused on the anniversary love letter goal
-
-Priority:
-
-- Emotional storytelling
-- Simple implementation
-- Smooth user experience
-
----
-
-### 2. Story Agent
-
-Responsible for:
-
-- Korean letter-style writing
-- Warm and sincere romantic text
-- Making each memory feel personal
-
-Writing style:
-
-- Natural Korean
-- Sincere
-- Warm
-- Not too cheesy
-- Short but emotional
-- Suitable for a girlfriend
-
-Avoid:
-
-- Overly dramatic writing
-- Generic love quotes
-- Cringe expressions
-- Too long paragraphs
-
----
-
-### 3. Frontend Agent
-
-Responsible for:
-
-- React component structure
-- Responsive layout
-- Tailwind styling
-- Scroll-based sections
-- Framer Motion animations
-- Mobile-first design
-
-Rules:
-
-- Use TypeScript
-- Use reusable components
-- Avoid unnecessary libraries
-- Keep UI clean and romantic
-- Make mobile experience excellent
-
----
-
-### 4. Design Agent
-
-Responsible for:
-
-- Visual mood
-- Typography
-- Color palette
-- Photo layout
-- Letter-like presentation
-
-Design direction:
-
-- Warm ivory background
-- Soft pink or rose accents
-- Rounded photo cards
-- Paper-like sections
-- Subtle shadows
-- Gentle animations
-- Elegant spacing
-
-Avoid:
-
-- Dark cyberpunk style
-- Neon colors
-- Too many effects
-- Overcomplicated UI
-
----
-
-### 5. Reviewer Agent
-
-Responsible for:
-
-- Checking code quality
-- Checking responsive layout
-- Finding broken imports
-- Checking asset paths
-- Making sure the project builds successfully
-
-Before finishing any task, verify:
-
-- `npm run build` works
-- Components are separated
-- No unused imports
-- No broken image paths
-- Mobile layout is usable
-
----
-
-## Required Sections
-
-### 1. Hero Section
-
-Purpose:
-Introduce the anniversary website.
-
-Content:
-
-- Main title
-- Short subtitle
-- Date or anniversary phrase
-- Scroll hint
-
-Example:
-“우리의 첫 번째 1년”
-“너와 함께 걸어온 365일의 기록”
-
----
-
-### 2. Opening Letter Section
-
-Purpose:
-Start the website like a personal letter.
-
-Content:
-
-- Short greeting
-- Why this website was made
-- Emotional introduction
-
----
-
-### 3. Memory Sections
-
-Purpose:
-Show important memories one by one.
-
-Each memory should include:
-
-- date
-- title
-- image
-- short letter message
-
-Memory examples:
-
-- 처음 만난 날
-- 첫 데이트
-- 같이 웃었던 날
-- 다퉜지만 더 가까워진 날
-- 여행 갔던 날
-- 평범해서 더 좋았던 날
-
----
-
-### 4. Emotion Flow Sections
-
-Purpose:
-Show that the relationship had many emotions.
-
-Include:
-
-- 희
-- 노
-- 애
-- 락
-
-Each emotion section should feel different but still belong to the same design system.
-
----
-
-### 5. Photo Gallery Section
-
-Purpose:
-Show multiple photos together like a memory album.
-
-Use:
-
-- responsive grid
-- soft hover effects
-- rounded corners
-
----
-
-### 6. Final Letter Section
-
-Purpose:
-End with a sincere full letter.
-
-This should be the most emotional part of the website.
-
-Include:
-
-- gratitude
-- apology if needed
-- promise
-- love
-- anniversary message
-
----
-
-## Data Rules
-
-Use a data file like this:
-
-```ts
-export const memories = [
-  {
-    id: 'first-meeting',
-    date: '2025.00.00',
-    title: '처음 만난 날',
-    emotion: '설렘',
-    image: '/images/memories/first-meeting.jpg',
-    message: '처음 너를 만났던 순간은 아직도 선명하게 기억나.',
-  },
-];
-```
-
-Do not hardcode memory data inside components.
-
----
-
-## Animation Rules
-
-Use Framer Motion for:
-
-- fade in
-- slide up
-- photo reveal
-- text reveal
-- section transition
-
-Keep animations subtle.
-
-Avoid:
-
-- fast movement
-- excessive bouncing
-- heavy animation
-- distracting effects
-
----
-
-## Responsive Rules
-
-Mobile-first.
-
-The website must look good on:
-
-- iPhone size screens
-- tablet
-- desktop
-
-On mobile:
-
-- use single column layout
-- large readable text
-- photos should be full width
-- avoid tiny buttons
-
----
-
-## Performance Rules
-
-- Lazy load images
-- Use compressed photos
-- Avoid large video files
-- Avoid unnecessary dependencies
-- Keep animations lightweight
-- Make the site deployable to Vercel
-
----
-
-## Build Commands
+Before finishing implementation work, run:
 
 ```bash
-npm install
-npm run dev
-npm run build
 npm run lint
+npm run build
 ```
 
----
+Also check:
 
-## Important Reminder
-
-This is not a portfolio demo first.
-
-This is a personal gift.
-
-Prioritize sincerity, readability, emotional pacing, and a beautiful final experience.
+- No unused imports
+- No broken image, video, SVG, audio, or font paths
+- Mobile layout remains usable
+- Touch interactions still work
+- Music does not start before explicit user interaction

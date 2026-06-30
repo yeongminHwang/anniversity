@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { decorationAsset } from '../../data/assets';
+import { fireOpeningConfetti } from '../../lib/confetti';
 
 type OpeningDoorSectionProps = {
   onOpen: () => void;
@@ -27,6 +28,7 @@ export default function OpeningDoorSection({
 
     onStartOpen?.();
     setIsOpening(true);
+    fireOpeningConfetti();
     timeoutRef.current = window.setTimeout(onOpen, 1180);
   };
 

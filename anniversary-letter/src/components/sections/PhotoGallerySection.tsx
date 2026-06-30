@@ -1,7 +1,15 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  type PointerEvent as ReactPointerEvent,
+} from 'react';
 import {
   motion,
   useAnimationFrame,
+  useDragControls,
   useMotionValue,
   useTransform,
   type MotionValue,
@@ -23,8 +31,13 @@ export default function PhotoGallerySection({
   const viewportRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const isDraggingRef = useRef(false);
+  const hasStartedDragRef = useRef(false);
+  const pointerStartRef = useRef({ x: 0, y: 0 });
+  const shouldTrackPointerRef = useRef(false);
+  const resumeTimerRef = useRef<number>();
   const activeIndexRef = useRef(0);
   const hasMeasuredRef = useRef(false);
+  const dragControls = useDragControls();
   const trackX = useMotionValue(0);
   const itemCount = items.length;
   const repeatedItems = useMemo(
@@ -73,6 +86,69 @@ export default function PhotoGallerySection({
     [loopWidth, itemCount, normalizeX],
   );
 
+  const pauseAutoLoop = useCallback(() => {
+    window.clearTimeout(resumeTimerRef.current);
+    isDraggingRef.current = true;
+  }, []);
+
+  const resumeAutoLoop = useCallback(() => {
+    window.clearTimeout(resumeTimerRef.current);
+    resumeTimerRef.current = window.setTimeout(() => {
+      trackX.set(normalizeX(trackX.get()));
+      updateActiveIndex(trackX.get());
+      isDraggingRef.current = false;
+    }, 120);
+  }, [normalizeX, trackX, updateActiveIndex]);
+
+  const handlePointerDown = useCallback(
+    (event: ReactPointerEvent<HTMLDivElement>) => {
+      if (itemCount <= 1) {
+        return;
+      }
+
+      shouldTrackPointerRef.current = true;
+      hasStartedDragRef.current = false;
+      pointerStartRef.current = {
+        x: event.clientX,
+        y: event.clientY,
+      };
+    },
+    [itemCount],
+  );
+
+  const handlePointerMove = useCallback(
+    (event: ReactPointerEvent<HTMLDivElement>) => {
+      if (!shouldTrackPointerRef.current || hasStartedDragRef.current) {
+        return;
+      }
+
+      const deltaX = Math.abs(event.clientX - pointerStartRef.current.x);
+      const deltaY = Math.abs(event.clientY - pointerStartRef.current.y);
+
+      if (deltaY > 8 && deltaY > deltaX) {
+        shouldTrackPointerRef.current = false;
+        return;
+      }
+
+      if (deltaX > 10 && deltaX > deltaY * 1.25) {
+        hasStartedDragRef.current = true;
+        pauseAutoLoop();
+        dragControls.start(event);
+      }
+    },
+    [dragControls, pauseAutoLoop],
+  );
+
+  const handlePointerEnd = useCallback(() => {
+    shouldTrackPointerRef.current = false;
+
+    if (hasStartedDragRef.current) {
+      resumeAutoLoop();
+    }
+
+    hasStartedDragRef.current = false;
+  }, [resumeAutoLoop]);
+
   useEffect(() => {
     const viewport = viewportRef.current;
     const track = trackRef.current;
@@ -100,7 +176,10 @@ export default function PhotoGallerySection({
     resizeObserver.observe(viewport);
     resizeObserver.observe(track);
 
-    return () => resizeObserver.disconnect();
+    return () => {
+      resizeObserver.disconnect();
+      window.clearTimeout(resumeTimerRef.current);
+    };
   }, [trackX]);
 
   useAnimationFrame((_, delta) => {
@@ -150,26 +229,27 @@ export default function PhotoGallerySection({
 
         <div
           ref={viewportRef}
-          className="relative left-1/2 ml-[-50vw] w-screen cursor-grab overflow-hidden pb-2 select-none active:cursor-grabbing [touch-action:pan-y] [-webkit-user-select:none]"
+          className="relative left-1/2 ml-[-50vw] w-screen cursor-grab overflow-hidden pb-2 select-none active:cursor-grabbing [overscroll-behavior-x:contain] [touch-action:pan-y] [-webkit-touch-callout:none] [-webkit-user-select:none]"
         >
           <motion.div
             ref={trackRef}
-            className="flex w-max gap-5"
+            className="flex w-max gap-5 [will-change:transform]"
             style={{ x: trackX }}
             drag={itemCount > 1 ? 'x' : false}
+            dragControls={dragControls}
+            dragDirectionLock
+            dragListener={false}
             dragConstraints={
               loopWidth > 0 ? { left: -loopWidth * 2, right: 0 } : undefined
             }
-            dragElastic={0.06}
+            dragElastic={0.025}
             dragMomentum={false}
-            onDragStart={() => {
-              isDraggingRef.current = true;
-            }}
-            onDragEnd={() => {
-              trackX.set(normalizeX(trackX.get()));
-              updateActiveIndex(trackX.get());
-              isDraggingRef.current = false;
-            }}
+            onPointerDown={handlePointerDown}
+            onPointerMove={handlePointerMove}
+            onPointerCancel={handlePointerEnd}
+            onPointerUp={handlePointerEnd}
+            onDragStart={pauseAutoLoop}
+            onDragEnd={resumeAutoLoop}
           >
             {repeatedItems.map((item, index) => (
               <GalleryCarouselCard
@@ -237,6 +317,8 @@ function GalleryCarouselCard({
         title={item.title}
         date={item.date}
         caption={item.caption}
+        enableTapScale={false}
+        showVideoControls={false}
       />
     </motion.div>
   );
