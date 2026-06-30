@@ -6,16 +6,16 @@ import {
   useTransform,
   type MotionValue,
 } from 'framer-motion';
-import type { Memory } from '../../data/memories';
+import type { DailyGalleryItem } from '../../data/dailyGallery';
 import FloralWreath from '../ui/FloralWreath';
 import PhotoCard from '../ui/PhotoCard';
 
 type PhotoGallerySectionProps = {
-  memories: Memory[];
+  items: DailyGalleryItem[];
 };
 
 export default function PhotoGallerySection({
-  memories,
+  items,
 }: PhotoGallerySectionProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [loopWidth, setLoopWidth] = useState(0);
@@ -26,12 +26,12 @@ export default function PhotoGallerySection({
   const activeIndexRef = useRef(0);
   const hasMeasuredRef = useRef(false);
   const trackX = useMotionValue(0);
-  const memoryCount = memories.length;
-  const repeatedMemories = useMemo(
-    () => [...memories, ...memories, ...memories],
-    [memories],
+  const itemCount = items.length;
+  const repeatedItems = useMemo(
+    () => [...items, ...items, ...items],
+    [items],
   );
-  const loopDuration = Math.max(memoryCount * 5.2, 28);
+  const loopDuration = Math.max(itemCount * 5.2, 28);
 
   const normalizeX = useCallback(
     (value: number) => {
@@ -56,21 +56,21 @@ export default function PhotoGallerySection({
 
   const updateActiveIndex = useCallback(
     (value: number) => {
-      if (!loopWidth || memoryCount <= 1) {
+      if (!loopWidth || itemCount <= 1) {
         return;
       }
 
       const normalized = normalizeX(value);
       const progress = (-normalized - loopWidth) / loopWidth;
       const nextIndex =
-        Math.floor(progress * memoryCount + 0.5) % memoryCount;
+        Math.floor(progress * itemCount + 0.5) % itemCount;
 
       if (nextIndex !== activeIndexRef.current) {
         activeIndexRef.current = nextIndex;
         setActiveIndex(nextIndex);
       }
     },
-    [loopWidth, memoryCount, normalizeX],
+    [loopWidth, itemCount, normalizeX],
   );
 
   useEffect(() => {
@@ -104,7 +104,7 @@ export default function PhotoGallerySection({
   }, [trackX]);
 
   useAnimationFrame((_, delta) => {
-    if (!loopWidth || memoryCount <= 1) {
+    if (!loopWidth || itemCount <= 1) {
       return;
     }
 
@@ -137,10 +137,10 @@ export default function PhotoGallerySection({
         </motion.div>
 
         <div className="-mt-5 mb-5 flex items-center justify-center gap-2">
-          {memories.map((memory, index) => (
+          {items.map((item, index) => (
             <span
-              key={memory.id}
-              aria-label={`${memory.title} 위치`}
+              key={item.id}
+              aria-label={`${item.title} 위치`}
               className={`h-2 rounded-full transition-all duration-300 ${
                 activeIndex === index ? 'w-5 bg-accent' : 'w-2 bg-border'
               }`}
@@ -156,7 +156,7 @@ export default function PhotoGallerySection({
             ref={trackRef}
             className="flex w-max gap-5"
             style={{ x: trackX }}
-            drag={memoryCount > 1 ? 'x' : false}
+            drag={itemCount > 1 ? 'x' : false}
             dragConstraints={
               loopWidth > 0 ? { left: -loopWidth * 2, right: 0 } : undefined
             }
@@ -171,13 +171,13 @@ export default function PhotoGallerySection({
               isDraggingRef.current = false;
             }}
           >
-            {repeatedMemories.map((memory, index) => (
+            {repeatedItems.map((item, index) => (
               <GalleryCarouselCard
-                key={`${memory.id}-${index}`}
+                key={`${item.id}-${index}`}
                 index={index}
                 loopWidth={loopWidth}
-                memory={memory}
-                memoryCount={memoryCount}
+                item={item}
+                itemCount={itemCount}
                 trackX={trackX}
                 viewportWidth={viewportWidth}
               />
@@ -191,22 +191,22 @@ export default function PhotoGallerySection({
 
 type GalleryCarouselCardProps = {
   index: number;
+  item: DailyGalleryItem;
+  itemCount: number;
   loopWidth: number;
-  memory: Memory;
-  memoryCount: number;
   trackX: MotionValue<number>;
   viewportWidth: number;
 };
 
 function GalleryCarouselCard({
   index,
+  item,
+  itemCount,
   loopWidth,
-  memory,
-  memoryCount,
   trackX,
   viewportWidth,
 }: GalleryCarouselCardProps) {
-  const itemSlotWidth = memoryCount > 0 ? loopWidth / memoryCount : 0;
+  const itemSlotWidth = itemCount > 0 ? loopWidth / itemCount : 0;
 
   const focusProgress = useTransform(trackX, (value) => {
     if (!loopWidth || !viewportWidth || !itemSlotWidth) {
@@ -228,15 +228,15 @@ function GalleryCarouselCard({
       style={{ opacity, scale, y }}
     >
       <PhotoCard
-        image={memory.media.src}
-        mediaType={memory.media.type}
-        poster={memory.media.poster}
-        alt={`${memory.title} 앨범 ${
-          memory.media.type === 'video' ? '영상' : '사진'
+        image={item.media.src}
+        mediaType={item.media.type}
+        poster={item.media.poster}
+        alt={`${item.title} 앨범 ${
+          item.media.type === 'video' ? '영상' : '사진'
         }`}
-        title={memory.title}
-        date={memory.date}
-        caption={memory.emotion}
+        title={item.title}
+        date={item.date}
+        caption={item.caption}
       />
     </motion.div>
   );

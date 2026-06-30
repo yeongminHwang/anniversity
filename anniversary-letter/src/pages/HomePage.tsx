@@ -9,6 +9,7 @@ import PhotoGallerySection from '../components/sections/PhotoGallerySection';
 import SeonmiEncyclopediaSection from '../components/sections/SeonmiEncyclopediaSection';
 import MusicToggleButton from '../components/ui/MusicToggleButton';
 import { audioAsset } from '../data/assets';
+import { dailyGalleryItems } from '../data/dailyGallery';
 import { memories } from '../data/memories';
 
 export default function HomePage() {
@@ -88,7 +89,7 @@ export default function HomePage() {
             />
           ))}
           <SeonmiEncyclopediaSection />
-          <PhotoGallerySection memories={memories} />
+          <PhotoGallerySection items={dailyGalleryItems} />
           <FinalLetterSection />
         </>
       )}

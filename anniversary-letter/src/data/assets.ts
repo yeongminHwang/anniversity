@@ -6,6 +6,8 @@ export const publicAsset = (path: string) =>
 export const memoryAsset = (path: string) =>
   publicAsset(`images/memories/${path}`);
 
+export const dailyAsset = (path: string) => publicAsset(`images/daily/${path}`);
+
 export const decorationAsset = (path: string) =>
   publicAsset(`images/decorations/${path}`);
 
