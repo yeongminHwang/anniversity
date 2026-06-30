@@ -16,6 +16,7 @@ type PolaroidFlipCardProps = {
   date: string;
   frontMessage: string;
   backMessage: string;
+  isActive?: boolean;
 };
 
 export default function PolaroidFlipCard({
@@ -26,6 +27,7 @@ export default function PolaroidFlipCard({
   date,
   frontMessage,
   backMessage,
+  isActive = true,
 }: PolaroidFlipCardProps) {
   const [isFlipped, setIsFlipped] = useState(false);
   const touchStateRef = useRef({
@@ -68,26 +70,30 @@ export default function PolaroidFlipCard({
       onClick={handleClick}
       onPointerDown={handlePointerDown}
       onPointerMove={handlePointerMove}
+      onDragStart={(event) => event.preventDefault()}
       onKeyDown={(event) => {
         if (event.key === 'Enter' || event.key === ' ') {
           event.preventDefault();
           toggle();
         }
       }}
-      className="select-none font-hand [perspective:1200px] [-webkit-user-select:none]"
+      className="select-none font-hand [perspective:1200px] [-webkit-touch-callout:none] [-webkit-user-drag:none] [-webkit-user-select:none]"
     >
       <motion.div
         className="relative min-h-[620px] w-full rounded-lg outline-none [touch-action:pan-y] [transform-style:preserve-3d]"
         animate={{ rotateY: isFlipped ? 180 : 0 }}
         transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
       >
-        <article className="absolute inset-0 rounded-lg border border-borderSoft bg-paper p-3 shadow-photo [backface-visibility:hidden]">
+        <article
+          className={`absolute inset-0 rounded-lg border border-borderSoft bg-paper p-3 transition-shadow duration-300 [backface-visibility:hidden] ${isActive ? 'shadow-photo' : 'shadow-none'}`}
+        >
           <img
             aria-hidden="true"
             src={decorationAsset('floweralUp.svg')}
             alt=""
+            draggable={false}
             loading="lazy"
-            className="absolute right-2 top-2 z-10 h-auto w-24 rotate-[16deg] opacity-35"
+            className="absolute right-2 top-2 z-10 h-auto w-24 rotate-[16deg] select-none opacity-35 [-webkit-user-drag:none]"
           />
           <div className="aspect-[4/5] overflow-hidden rounded-md bg-surface/50">
             {mediaType === 'video' ? (
@@ -101,6 +107,7 @@ export default function PolaroidFlipCard({
                 muted
                 playsInline
                 preload="metadata"
+                draggable={false}
               />
             ) : (
               <img
@@ -108,9 +115,10 @@ export default function PolaroidFlipCard({
                 srcSet={responsiveWebpSrcSet(image)}
                 sizes="(max-width: 640px) calc(100vw - 2.5rem), 402px"
                 alt={`${title} 사진`}
+                draggable={false}
                 loading="lazy"
                 decoding="async"
-                className="h-full w-full object-cover"
+                className="h-full w-full select-none object-cover [-webkit-user-drag:none]"
               />
             )}
           </div>
@@ -142,9 +150,10 @@ export default function PolaroidFlipCard({
             <motion.img
               src={decorationAsset('touch.svg')}
               alt=""
+              draggable={false}
               loading="lazy"
               decoding="async"
-              className="h-auto w-full drop-shadow-[0_8px_14px_rgba(217,143,164,0.22)]"
+              className="h-auto w-full select-none drop-shadow-[0_8px_14px_rgba(217,143,164,0.22)] [-webkit-user-drag:none]"
               animate={
                 isFlipped
                   ? { opacity: 0 }
@@ -164,7 +173,9 @@ export default function PolaroidFlipCard({
           </motion.div>
         </article>
 
-        <article className="absolute inset-0 flex rounded-lg border border-border bg-[linear-gradient(180deg,#FFFAFB_0%,#FBE8ED_58%,#FFF7F0_100%)] p-7 shadow-photo [backface-visibility:hidden] [transform:rotateY(180deg)]">
+        <article
+          className={`absolute inset-0 flex rounded-lg border border-border bg-[linear-gradient(180deg,#FFFAFB_0%,#FBE8ED_58%,#FFF7F0_100%)] p-7 transition-shadow duration-300 [backface-visibility:hidden] [transform:rotateY(180deg)] ${isActive ? 'shadow-photo' : 'shadow-none'}`}
+        >
           <div className="m-auto text-center">
             <p className="text-[1.05rem] font-normal text-rose">{date}</p>
             <h3 className="mt-3 text-[2.35rem] font-normal leading-tight text-ink">

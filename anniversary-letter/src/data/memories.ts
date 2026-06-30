@@ -63,26 +63,14 @@ export const memories: Memory[] = [
       {
         id: 'jeju-extra-01',
         date: 'EP.01-2',
-        title: '제주도 조각',
+        title: '뭐하고 놀았을까요?',
         media: {
           type: 'image',
-          src: memoryAsset('01-jeju/01-jeju-01-1600.webp'),
+          src: memoryAsset('01-jeju/01-jeju-02.jpg'),
         },
-        message: '가로로 넘겨보는 제주도의 두 번째 장면.',
+        message: '선미 만나기 전 갔던 술집',
         flipMessage:
-          '이 카드에는 나중에 더 예쁜 제주도 사진을 한 장 더 넣어둘게.',
-      },
-      {
-        id: 'jeju-extra-02',
-        date: 'EP.01-3',
-        title: '제주도 한 장 더',
-        media: {
-          type: 'image',
-          src: memoryAsset('01-jeju/01-jeju-01-1600.webp'),
-        },
-        message: '처음의 기억을 조금 더 길게 남겨두고 싶어서.',
-        flipMessage:
-          '같은 사진이어도 넘겨보면 그날을 한 번 더 꺼내보는 느낌이 들어.',
+          '나중에 제주도 가면 여기서 같이 술 마시자.',
       },
     ],
     quiz: {

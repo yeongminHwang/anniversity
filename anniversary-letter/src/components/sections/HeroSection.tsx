@@ -12,7 +12,7 @@ const photoPreview = [
 export default function HeroSection() {
   return (
     <section className="relative flex min-h-[100svh] items-center bg-bg px-5 pb-12 pt-[calc(env(safe-area-inset-top)+4.5rem)] font-hand">
-      <div className="mx-auto flex w-full max-w-[402px] flex-col justify-center gap-9">
+      <div className="pointer-events-none mx-auto flex w-full max-w-[402px] select-none flex-col justify-center gap-9 [-webkit-touch-callout:none] [-webkit-user-select:none]">
         <motion.div
           className="text-center"
           initial={{ opacity: 0, y: 24 }}
@@ -51,8 +51,9 @@ export default function HeroSection() {
               srcSet={responsiveWebpSrcSet(image)}
               sizes="176px"
               alt=""
+              draggable={false}
               decoding="async"
-              className="absolute h-56 w-44 rounded-lg border-[10px] border-card object-cover shadow-photo"
+              className="absolute h-56 w-44 select-none rounded-lg border-[10px] border-card object-cover shadow-photo [-webkit-user-drag:none]"
               style={{
                 left: `${index * 22}%`,
                 top: `${index * 13}%`,
