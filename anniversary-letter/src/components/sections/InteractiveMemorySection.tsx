@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { decorationAsset } from '../../data/assets';
 import type { Memory } from '../../data/memories';
 import MemoryQuiz from '../ui/MemoryQuiz';
 import PolaroidFlipCard from '../ui/PolaroidFlipCard';
@@ -32,14 +33,14 @@ export default function InteractiveMemorySection({
       />
       <img
         aria-hidden="true"
-        src="/images/decorations/floweralUp.svg"
+        src={decorationAsset('floweralUp.svg')}
         alt=""
         loading="lazy"
         className="absolute -right-12 top-7 -z-10 h-auto w-44 rotate-[24deg] opacity-[0.08]"
       />
       <img
         aria-hidden="true"
-        src="/images/decorations/floweralDown.svg"
+        src={decorationAsset('floweralDown.svg')}
         alt=""
         loading="lazy"
         className="absolute -bottom-4 -left-14 -z-10 h-auto w-44 rotate-[-18deg] opacity-[0.08]"

@@ -1,4 +1,6 @@
 import { motion } from 'framer-motion';
+import { responsiveWebpSrcSet } from '../../data/assets';
+import LazyVideo from './LazyVideo';
 
 type PhotoCardProps = {
   image: string;
@@ -31,7 +33,7 @@ export default function PhotoCard({
     >
       <div className="aspect-[4/5] overflow-hidden rounded-md bg-blush/40">
         {mediaType === 'video' ? (
-          <video
+          <LazyVideo
             src={image}
             poster={poster}
             aria-label={alt}
@@ -44,8 +46,11 @@ export default function PhotoCard({
         ) : (
           <img
             src={image}
+            srcSet={responsiveWebpSrcSet(image)}
+            sizes="(max-width: 640px) calc(100vw - 2.5rem), 402px"
             alt={alt}
             loading={loading}
+            decoding="async"
             className="h-full w-full object-cover"
           />
         )}

@@ -1,12 +1,12 @@
 import { motion } from 'framer-motion';
-import { memoryAsset } from '../../data/assets';
+import { memoryAsset, responsiveWebpSrcSet } from '../../data/assets';
 import FloralWreath from '../ui/FloralWreath';
 import ScrollHint from '../ui/ScrollHint';
 
 const photoPreview = [
-  memoryAsset('6-행궁동 데이트/6-행궁동 데이트-01.jpg'),
-  memoryAsset('8-안동 데이트/8-안동 데이트-05.jpg'),
-  memoryAsset('9-부산 데이트/9-부산 데이트-05.jpg'),
+  memoryAsset('6-행궁동 데이트/6-행궁동 데이트-01-1600.webp'),
+  memoryAsset('8-안동 데이트/8-안동 데이트-05-1600.webp'),
+  memoryAsset('9-부산 데이트/9-부산 데이트-05-1600.webp'),
 ];
 
 export default function HeroSection() {
@@ -48,7 +48,10 @@ export default function HeroSection() {
             <img
               key={image}
               src={image}
+              srcSet={responsiveWebpSrcSet(image)}
+              sizes="176px"
               alt=""
+              decoding="async"
               className="absolute h-56 w-44 rounded-lg border-[10px] border-white object-cover shadow-photo"
               style={{
                 left: `${index * 22}%`,

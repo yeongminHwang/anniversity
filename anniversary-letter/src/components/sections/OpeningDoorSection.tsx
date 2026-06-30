@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
+import { decorationAsset } from '../../data/assets';
 
 type OpeningDoorSectionProps = {
   onOpen: () => void;
@@ -91,14 +92,14 @@ export default function OpeningDoorSection({
         >
           <div className="absolute inset-7 rounded-[44%] bg-ivory/70 blur-[1px]" />
           <img
-            src="/images/decorations/openingDoor.svg"
+            src={decorationAsset('openingDoor.svg')}
             alt=""
             className="relative h-full w-full object-contain opacity-[0.58] drop-shadow-[0_18px_32px_rgba(201,79,114,0.12)]"
           />
         </div>
 
         <img
-          src="/images/decorations/floweralUp.svg"
+          src={decorationAsset('floweralUp.svg')}
           alt=""
           aria-hidden="true"
           className="relative z-10 mx-auto mb-4 h-auto w-[178px] max-w-[54vw] object-contain opacity-90"
@@ -125,7 +126,7 @@ export default function OpeningDoorSection({
         </div>
 
         <img
-          src="/images/decorations/floweralDown.svg"
+          src={decorationAsset('floweralDown.svg')}
           alt=""
           aria-hidden="true"
           className="relative z-10 mx-auto mt-5 h-auto w-[178px] max-w-[54vw] object-contain opacity-90"

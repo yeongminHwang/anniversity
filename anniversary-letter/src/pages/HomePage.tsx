@@ -9,6 +9,7 @@ import OpeningDoorSection from '../components/sections/OpeningDoorSection';
 import PhotoGallerySection from '../components/sections/PhotoGallerySection';
 import HeartCollectMiniGame from '../components/ui/HeartCollectMiniGame';
 import MusicToggleButton from '../components/ui/MusicToggleButton';
+import { audioAsset } from '../data/assets';
 import { memories } from '../data/memories';
 
 export default function HomePage() {
@@ -56,7 +57,7 @@ export default function HomePage() {
     <PageLayout>
       <audio
         ref={audioRef}
-        src="/audio/background-music.mp3"
+        src={audioAsset('background-music.mp3')}
         loop
         preload="none"
         onPlay={() => setIsMusicPlaying(true)}

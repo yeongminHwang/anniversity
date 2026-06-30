@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import { decorationAsset, responsiveWebpSrcSet } from '../../data/assets';
+import LazyVideo from './LazyVideo';
 
 type PolaroidFlipCardProps = {
   image: string;
@@ -46,14 +48,14 @@ export default function PolaroidFlipCard({
         <article className="absolute inset-0 rounded-lg border border-rose/15 bg-paper p-3 shadow-photo [backface-visibility:hidden]">
           <img
             aria-hidden="true"
-            src="/images/decorations/floweralUp.svg"
+            src={decorationAsset('floweralUp.svg')}
             alt=""
             loading="lazy"
             className="absolute right-2 top-2 z-10 h-auto w-24 rotate-[16deg] opacity-35"
           />
           <div className="aspect-[4/5] overflow-hidden rounded-md bg-blush/50">
             {mediaType === 'video' ? (
-              <video
+              <LazyVideo
                 src={image}
                 poster={poster}
                 aria-label={`${title} 영상`}
@@ -67,8 +69,11 @@ export default function PolaroidFlipCard({
             ) : (
               <img
                 src={image}
+                srcSet={responsiveWebpSrcSet(image)}
+                sizes="(max-width: 640px) calc(100vw - 2.5rem), 402px"
                 alt={`${title} 사진`}
                 loading="lazy"
+                decoding="async"
                 className="h-full w-full object-cover"
               />
             )}
