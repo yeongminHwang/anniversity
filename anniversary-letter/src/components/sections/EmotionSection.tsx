@@ -55,7 +55,7 @@ export default function EmotionSection() {
                 <h3 className="text-[1.55rem] font-normal leading-snug text-ink">
                   {emotion.title}
                 </h3>
-                <p className="mt-4 text-[1.2rem] leading-8 text-ink/70">
+                <p className="mt-4 whitespace-pre-line text-[1.2rem] leading-8 text-ink/70">
                   {emotion.message}
                 </p>
               </FloralFrame>

@@ -83,7 +83,7 @@ export const memories: Memory[] = [
   {
     id: 'sseom',
     date: 'EP.02',
-    title: '썸',
+    title: '우리 더 친해져 볼래요?',
     emotion: '설렘',
     image: memoryAsset('02-sseom/02-sseom-02-1600.webp'),
     media: {
@@ -91,22 +91,71 @@ export const memories: Memory[] = [
       src: memoryAsset('02-sseom/02-sseom-02-1600.webp'),
     },
     message:
-      '아직 말로 다 정하지 못한 마음들이 사진 사이에 조용히 남아 있던 시간.',
+      '선미 가평까지 찾아와주시다.',
     hiddenMessage:
       '그때의 어색함이 싫지 않았어. 오히려 너를 더 조심히 알고 싶게 만들었어.',
-    flipMessage:
-      '확신보다 궁금함이 먼저였고, 그 궁금함이 천천히 좋아하는 마음이 됐어.',
+    flipMessage: `2시간씩 차타고 새벽에 달려와준 우리 선미 ❤️ \n 저 이 때 긴장 많이 했답니다!`,
+    extraPolaroids: [
+      {
+        id: 'sseom-extra-01',
+        date: 'EP.02-2',
+        title: '각자의 자리에서.',
+        media: {
+          type: 'video',
+          src: memoryAsset('02-sseom/02-sseom-01.mp4'),
+        },
+        message: 'with 어린이집 선생님',
+        flipMessage:
+          '이 사진 너무 귀여워. 완죤 귀여운 선생님이야. 😍😍',
+      },
+      {
+        id: 'sseom-extra-02',
+        date: 'EP.02-3',
+        title: '각자의 자리에서.',
+        media: {
+          type: 'image',
+          src: memoryAsset('02-sseom/02-sseom-03.jpg'),
+        },
+        message: 'with 군인 아저씨',
+        flipMessage:
+          `힘들 때마다 자기 사진 보면서 \n 씩 웃고 다시 일했답니다~ 😂`,
+      },
+      {
+        id: 'sseom-extra-03',
+        date: 'EP.02-4',
+        title: '생일 축하해',
+        media: {
+          type: 'image',
+          src: memoryAsset('02-sseom/02-sseom-04.jpg'),
+        },
+        message: '맛있는 양꼬치와 깨알 소주 한 병',
+        flipMessage:
+          `자기 덕분에 외로울 뻔한 생일 정말 행복하게 보냈어. \n 아직도 자기가 준 미역국이랑 좋아하는 반찬 듬뿍 \n 챙겨준게 생각나고 고마워`,
+      },
+      {
+        id: 'sseom-extra-04',
+        date: 'EP.02-5',
+        title: '#아직 사귀는 거 아님',
+        media: {
+          type: 'image',
+          src: memoryAsset('02-sseom/02-sseom-05.jpg'),
+        },
+        message: '서로 같이 찍은 첫 사진',
+        flipMessage:
+          `서로 기분좋아 포즈잡던 날.`,
+      },
+    ],
     quiz: {
-      question: '그때 우리 사이에 제일 많이 흐르던 건?',
-      options: ['조용한 설렘', '완벽한 계획', '괜한 경쟁'],
-      answer: '조용한 설렘',
-      successMessage: '맞아. 조용해서 더 오래 기억나는 설렘이었어.',
+      question: '선미는 썸 탈 때 가평에 몇 번이나 와줬을까요?',
+      options: ['2번', '3번', '4번'],
+      answer: '3번',
+      successMessage: '내가 많이 못 가서 미안해. 사랑해 ❤️',
     },
   },
   {
     id: 'discharge',
     date: 'EP.03',
-    title: '전역',
+    title: '전역 끝, 연애 시작',
     emotion: '축하',
     image: memoryAsset('03-discharge/03-discharge-01-1600.webp'),
     media: {
@@ -114,16 +163,30 @@ export const memories: Memory[] = [
       src: memoryAsset('03-discharge/03-discharge-01-1600.webp'),
     },
     message:
-      '하나의 시간이 끝나고 새로운 하루가 시작되던 날, 네가 곁에 있어서 더 특별했어.',
+      '새로운 하루가 시작되던 날, 자기가 곁에 있어서 더 특별했어.',
     hiddenMessage:
       '축하받는 순간보다 더 기억나는 건, 그날을 같이 지나고 있었다는 사실이야.',
     flipMessage:
-      '새로운 시작 앞에서 네가 함께 웃어줘서 마음이 많이 든든했어.',
+      '새로운 시작 앞에서 자기랑 웃을 수 있어서 \n 더 잘해야겠다고 다짐했어.',
+    extraPolaroids: [
+      {
+        id: 'discharge-extra-01',
+        date: 'EP.03-2',
+        title: '전역 축하 케이크',
+        media: {
+          type: 'image',
+          src: memoryAsset('03-discharge/03-discharge-02.jpg'),
+        },
+        message: '저 이런 거 처음 받아봐요~',
+        flipMessage:
+          '인생의 큰 순간에 나랑 함께 있어줘서 고마워.',
+      },
+    ],
     quiz: {
-      question: '이날을 더 특별하게 만든 건?',
-      options: ['함께 축하한 마음', '복잡한 일정', '먼 길의 피곤함'],
-      answer: '함께 축하한 마음',
-      successMessage: '맞아. 함께 축하해서 더 오래 남는 날이 됐어.',
+      question: '전역 날 선미가 사준 저녁은 뭘까요?',
+      options: ['김진순', '골뱅이', '돌닭'],
+      answer: '돌닭',
+      successMessage: '정답이야. 아주 잘 기억하는 걸?',
     },
   },
   {

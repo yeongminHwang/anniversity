@@ -121,7 +121,7 @@ export default function MemoryQuiz({ quiz }: MemoryQuizProps) {
         {selected && (
           <motion.p
             key={isCorrect ? 'correct' : 'wrong'}
-            className={`mt-5 rounded-md px-4 py-3 text-[1.15rem] leading-8 ${isCorrect
+            className={`mt-5 whitespace-pre-line rounded-md px-4 py-3 text-[1.15rem] leading-8 ${isCorrect
               ? 'bg-[linear-gradient(135deg,#FFF9FA_0%,#F7DCE3_100%)] text-rose'
               : 'bg-[linear-gradient(135deg,#FFF9FA_0%,#FFF0F3_100%)] text-ink/70'
               }`}

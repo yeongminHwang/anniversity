@@ -41,7 +41,7 @@ export default function MemorySection({ memory, index }: MemorySectionProps) {
             {memory.title}
           </h2>
           <p className="mt-2 text-[1.1rem] font-normal text-rose">{memory.date}</p>
-          <p className="mt-6 text-[1.35rem] leading-9 text-ink/70">
+          <p className="mt-6 whitespace-pre-line text-[1.35rem] leading-9 text-ink/70">
             {memory.message}
           </p>
         </div>

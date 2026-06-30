@@ -24,7 +24,7 @@ export default function SecretLetterButton({
       </button>
       {isRevealed && (
         <motion.p
-          className="mt-5 rounded-lg border border-borderSoft bg-[linear-gradient(135deg,#FFF9FA_0%,#FBE8ED_100%)] p-5 text-[1.3rem] leading-10 text-ink/75"
+          className="mt-5 whitespace-pre-line rounded-lg border border-borderSoft bg-[linear-gradient(135deg,#FFF9FA_0%,#FBE8ED_100%)] p-5 text-[1.3rem] leading-10 text-ink/75"
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.45, ease: 'easeOut' }}

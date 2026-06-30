@@ -131,7 +131,7 @@ export default function PolaroidFlipCard({
                 {date}
               </span>
             </div>
-            <p className="mt-4 text-[1.3rem] leading-9 text-ink/70">
+            <p className="mt-4 whitespace-pre-line text-[1.3rem] leading-9 text-ink/70">
               {frontMessage}
             </p>
           </div>
@@ -181,7 +181,7 @@ export default function PolaroidFlipCard({
             <h3 className="mt-3 text-[2.35rem] font-normal leading-tight text-ink">
               {title}
             </h3>
-            <p className="mt-6 text-[1.5rem] leading-10 text-ink/75">
+            <p className="mt-6 whitespace-pre-line text-[1.5rem] leading-10 text-ink/75">
               {backMessage}
             </p>
             <p className="mt-8 text-[1.05rem] font-normal text-rose">
